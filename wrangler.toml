@@ -5,6 +5,6 @@
 # database_id below. You can also bind D1 entirely from the Pages dashboard
 # instead of this file — either works.
 
-name = "jiayu-site"
+name = "hujiayu0211-github-io"
 pages_build_output_dir = "."
 compatibility_date = "2024-11-01"
