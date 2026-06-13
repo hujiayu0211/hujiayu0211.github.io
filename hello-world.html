@@ -1176,9 +1176,9 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   border-radius:22px;
   overflow:hidden;
   background:
-    radial-gradient(120% 90% at 50% 0%, #1F3A2A 0%, #14271C 55%, #0E1B14 100%);
-  border:1px solid rgba(47,93,67,.45);
-  box-shadow:0 30px 80px -40px rgba(12,20,15,.8), inset 0 1px 0 rgba(255,255,255,.06);
+    radial-gradient(120% 90% at 50% 0%, #16241B 0%, #0C140F 55%, #080C09 100%);
+  border:1px solid rgba(47,93,67,.35);
+  box-shadow:0 30px 80px -40px rgba(12,20,15,.8), inset 0 1px 0 rgba(255,255,255,.04);
 }
 .globe-viz{
   width:100%;
@@ -1442,11 +1442,12 @@ if(dropdown && moreButton && moreMenu){
     }
     const globe=Globe()(vizEl)
       .backgroundColor('rgba(0,0,0,0)')
-      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
       .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
+      .showGraticules(true)
       .showAtmosphere(true)
-      .atmosphereColor('#7FB89A')
-      .atmosphereAltitude(0.2)
+      .atmosphereColor('#5E9E78')
+      .atmosphereAltitude(0.22)
       .pointsData(points)
       .pointLat('lat')
       .pointLng('lon')
