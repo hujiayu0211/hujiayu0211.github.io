@@ -1176,9 +1176,9 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   border-radius:22px;
   overflow:hidden;
   background:
-    radial-gradient(120% 90% at 50% 0%, #16241B 0%, #0C140F 55%, #080C09 100%);
-  border:1px solid rgba(47,93,67,.35);
-  box-shadow:0 30px 80px -40px rgba(12,20,15,.8), inset 0 1px 0 rgba(255,255,255,.04);
+    radial-gradient(120% 90% at 50% 0%, #1F3A2A 0%, #14271C 55%, #0E1B14 100%);
+  border:1px solid rgba(47,93,67,.45);
+  box-shadow:0 30px 80px -40px rgba(12,20,15,.8), inset 0 1px 0 rgba(255,255,255,.06);
 }
 .globe-viz{
   width:100%;
@@ -1442,24 +1442,25 @@ if(dropdown && moreButton && moreMenu){
     }
     const globe=Globe()(vizEl)
       .backgroundColor('rgba(0,0,0,0)')
-      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-dark.jpg')
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-blue-marble.jpg')
+      .bumpImageUrl('//unpkg.com/three-globe/example/img/earth-topology.png')
       .showAtmosphere(true)
-      .atmosphereColor('#4E7A5E')
-      .atmosphereAltitude(0.18)
+      .atmosphereColor('#7FB89A')
+      .atmosphereAltitude(0.2)
       .pointsData(points)
       .pointLat('lat')
       .pointLng('lon')
-      .pointColor(()=>GREEN_HI)
-      .pointAltitude(d=>Math.min(0.06+Math.log10((d.count||1)+1)*0.07,0.5))
-      .pointRadius(d=>Math.min(0.22+Math.log10((d.count||1)+1)*0.16,0.9))
+      .pointColor(()=>'#7CFFB0')
+      .pointAltitude(d=>Math.min(0.08+Math.log10((d.count||1)+1)*0.09,0.6))
+      .pointRadius(d=>Math.min(0.3+Math.log10((d.count||1)+1)*0.18,1.0))
       .pointsMerge(false)
       .pointsTransitionDuration(800)
       .ringsData(points.slice(0,40))
       .ringLat('lat').ringLng('lon')
-      .ringColor(()=>(t=>`rgba(111,191,140,${1-t})`))
-      .ringMaxRadius(d=>Math.min(2.4+Math.log10((d.count||1)+1)*1.4,6))
-      .ringPropagationSpeed(1.6)
-      .ringRepeatPeriod(2600);
+      .ringColor(()=>(t=>`rgba(124,255,176,${1-t})`))
+      .ringMaxRadius(d=>Math.min(2.8+Math.log10((d.count||1)+1)*1.5,7))
+      .ringPropagationSpeed(1.8)
+      .ringRepeatPeriod(2400);
 
     function size(){
       const w=vizEl.clientWidth, h=vizEl.clientHeight;
