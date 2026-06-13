@@ -1,0 +1,15 @@
+# Cloudflare configuration for the personal site + visitor globe.
+#
+# The "DB" binding name here MUST match what the functions use (env.DB).
+# After you create your D1 database (see the deployment guide), paste its
+# database_id below. You can also bind D1 entirely from the Pages dashboard
+# instead of this file — either works.
+
+name = "jiayu-site"
+pages_build_output_dir = "."
+compatibility_date = "2024-11-01"
+
+[[d1_databases]]
+binding = "DB"                 # -> available in functions as env.DB
+database_name = "visitor-globe"
+database_id = "PASTE_YOUR_D1_DATABASE_ID_HERE"
