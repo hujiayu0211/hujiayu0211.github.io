@@ -469,6 +469,19 @@ nav{
   margin-bottom:12px;
 }
 
+.exp-portfolio{
+  display:inline-block;
+  margin-top:22px;
+  font-family:var(--serif);
+  font-size:1.06rem;
+  font-weight:600;
+  letter-spacing:-.01em;
+  color:var(--leaf);
+  line-height:1;
+  transition:opacity .2s;
+}
+.exp-portfolio:hover{opacity:.68}
+
 .awards-list{
   list-style:none;
   margin:0;
@@ -1181,6 +1194,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
         </button>
 
         <div class="dropdown-menu" id="moreMenu" role="menu">
+          <a href="professional.html" data-page="professional.html" role="menuitem">Portfolio</a>
           <a href="live-my-life.html" data-page="live-my-life.html" role="menuitem">Live My Life</a>
           <a href="hello-world.html" data-page="hello-world.html" role="menuitem">Hello, World!</a>
         </div>
@@ -1334,6 +1348,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
           <div class="main"><div class="org">BNBU Communist Youth League</div><div class="desc">Youth League Branch Secretary</div></div>
           <div class="when">Jul. 2021 – May. 2025</div>
         </div>
+        <a class="exp-portfolio" href="professional.html">View Portfolio →</a>
       </div>
     </div>
   </section>
@@ -1524,7 +1539,7 @@ document.querySelectorAll('.nav-links a[data-page]').forEach(link=>{
 });
 
 // MORE dropdown: keep hover behavior on desktop, add click/tap toggle for mobile Safari and keyboard users.
-const morePages=['live-my-life.html','hello-world.html'];
+const morePages=['professional.html','live-my-life.html','hello-world.html'];
 const dropdown=document.querySelector('.dropdown');
 const moreButton=document.querySelector('.nav-more');
 const moreMenu=document.getElementById('moreMenu');
