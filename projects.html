@@ -1300,6 +1300,33 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   padding:6px 11px;
 }
 
+
+/* ===== status summary line ===== */
+.proj-status{display:flex;flex-wrap:wrap;gap:26px;margin:46px 0 0;font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase}
+.proj-status .ps{display:inline-flex;align-items:center;gap:9px}
+.st-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.st-active{color:var(--leaf)} .st-active .st-dot{background:var(--leaf)}
+.st-upcoming{color:var(--text-faint)} .st-upcoming .st-dot{background:transparent;border:1.5px solid var(--text-faint)}
+.st-done{color:var(--text-faint)} .st-done .st-dot{width:6px;height:6px;background:var(--text-faint)}
+
+/* ===== section header: rule + total on the right ===== */
+.soon-head::after{content:none}
+.soon-rule{flex:1;height:1.5px;background:var(--line);align-self:center}
+.soon-total{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);white-space:nowrap}
+
+/* ===== per-card status badge ===== */
+.teaser-top{justify-content:space-between}
+.card-badge{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+
+/* ===== collapsible overview ===== */
+.pdrop{margin-top:8px}
+.pdrop>summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--leaf)}
+.pdrop>summary::-webkit-details-marker{display:none}
+.pdrop>summary:hover{color:var(--leaf-deep)}
+.pchev{width:.5em;height:.5em;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg);transition:transform .2s var(--ease-snap);margin-bottom:.18em}
+.pdrop[open]>summary .pchev{transform:rotate(-135deg);margin-bottom:-.05em}
+.pdrop .teaser-body{margin-top:14px}
+
 @media(max-width:640px){
   .page-hero{padding:calc(var(--nav-h,72px) + 60px) 0 0}
   .dragon-banner{padding:46px 18px 48px}
@@ -1341,7 +1368,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   <div class="wrap">
     <div class="eyebrow rv"><span class="ln"></span>Systems in the Making</div>
     <h1 class="page-title rv">Projects<span class="dot">.</span></h1>
-    <p class="page-lead rv">Applied systems at the intersection of ESG, AI, and cross-border sustainability compliance &mdash; currently being built.</p>
+    <p class="page-lead rv">Building responsible, intelligent data systems &mdash; from ESG disclosure to real-world sustainability.</p>
   </div>
 </header>
 
@@ -1355,21 +1382,32 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
     <p class="dragon-sub">Projects are in progress &mdash; previews below</p>
   </div>
 
-  <!-- Coming soon -->
+  <!-- Status summary -->
+  <div class="proj-status rv">
+    <span class="ps st-active"><span class="st-dot"></span>2 Active</span>
+    <span class="ps st-upcoming"><span class="st-dot"></span>0 Upcoming</span>
+    <span class="ps st-done"><span class="st-dot"></span>0 Completed</span>
+  </div>
+
+  <!-- Projects header -->
   <div class="soon-head rv">
     <span class="section-no">01</span>
-    <span class="soon-label">Coming Soon</span>
+    <span class="soon-label">Projects</span>
+    <span class="soon-rule"></span>
+    <span class="soon-total">2 Total</span>
   </div>
 
   <div class="teaser rv">
     <div class="teaser-top">
-      <span class="teaser-status">In Development</span>
       <span class="teaser-kicker">Research System</span>
+      <span class="card-badge st-active"><span class="st-dot"></span>Active</span>
     </div>
     <h2 class="teaser-title">AI-Assisted ESG Report Extraction &amp; Evidence-Mapping System</h2>
-    <p class="teaser-body">
+    <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
+      <p class="teaser-body">
       A pipeline that transforms unstructured corporate sustainability reports into structured, traceable, and auditable evidence. The system extracts disclosure claims from multimodal reporting materials, links each claim back to its source passage, and prepares the data for downstream consistency checking, greenwashing-gap detection, and empirical analysis &mdash; combining retrieval-augmented generation with schema-based ESG framework mapping (GRI, SASB, AASB&nbsp;S1/S2).
     </p>
+    </details>
     <div class="teaser-tags">
       <span class="teaser-tag">RAG</span>
       <span class="teaser-tag">LLM</span>
@@ -1381,13 +1419,15 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 
   <div class="teaser rv">
     <div class="teaser-top">
-      <span class="teaser-status competition">Competition Project</span>
       <span class="teaser-kicker">Cross-Border Compliance</span>
+      <span class="card-badge st-active"><span class="st-dot"></span>Active</span>
     </div>
     <h2 class="teaser-title">Carbon Chain</h2>
-    <p class="teaser-body">
+    <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
+      <p class="teaser-body">
       A cross-border sustainability-compliance verification tool for Chinese exporters navigating divergent regulatory regimes &mdash; including the EU (CBAM, Battery Regulation), Australia (AASB&nbsp;S2 / ASRS), and Hong Kong (HKEX, ISSB-aligned). Carbon Chain helps firms map their disclosures against each jurisdiction's requirements and surface compliance gaps before they become trade barriers. Entered in the China International College Students&rsquo; Innovation Competition.
     </p>
+    </details>
     <div class="teaser-tags">
       <span class="teaser-tag">CBAM</span>
       <span class="teaser-tag">AASB S2 / ASRS</span>
