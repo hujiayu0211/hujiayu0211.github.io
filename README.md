@@ -6,7 +6,7 @@ The static pages are a standard academic homepage (about, projects, publications
 
 ## The visitor globe
 
-When a page loads, a lightweight tracker posts once per browser session to `/api/track`. The endpoint reads Cloudflare's edge geolocation for the request, rounds the coordinates, and writes a single row to a Cloudflare D1 (SQLite) database. The globe page then calls `/api/visitors`, which returns visits aggregated by location, and plots them.
+When a page loads, a lightweight tracker posts once per browser session to `/api/track`. The endpoint reads Cloudflare's edge geolocation for the request, rounds the coordinates, and writes a single row to a Cloudflare D1 (SQLite) database. The globe page then calls `/api/visitors`, which returns visits aggregated by location, and plots them on an interactive 3D globe.
 
 **Privacy was the first design constraint, not an afterthought.** The concrete choices:
 
@@ -17,10 +17,10 @@ When a page loads, a lightweight tracker posts once per browser session to `/api
 
 ## Tech stack
 
-- **Frontend:** static HTML, CSS, and vanilla JavaScript; a 3D globe for the visitor map
+- **Frontend:** static HTML, CSS, and vanilla JavaScript; the visitor map is rendered with [globe.gl](https://github.com/vasturiano/globe.gl) (built on three.js and three-globe)
 - **Backend:** Cloudflare Pages Functions (`functions/api/track.js`, `functions/api/visitors.js`)
 - **Database:** Cloudflare D1 (serverless SQLite), schema in `schema.sql`
-- **Hosting:** Cloudflare Pages with a custom domain (`CNAME`, `wrangler.toml`)
+- **Hosting:** Cloudflare Pages with a custom domain (`wrangler.toml`)
 
 ## Repository structure
 
@@ -47,12 +47,12 @@ The static pages open directly in a browser. The visitor globe needs the Cloudfl
 
 ```bash
 npm install -g wrangler
-wrangler d1 create visitor-globe        # then paste the database_id into wrangler.toml
+wrangler d1 create visitor-globe        # paste the returned database_id into wrangler.toml
 wrangler d1 execute visitor-globe --file schema.sql
 wrangler pages dev .
 ```
 
-Full setup, including binding D1 from the Pages dashboard, is in `DEPLOY-visitor-globe.md`.
+In `wrangler.toml`, replace the `database_id` value with your own (shown as a placeholder in this repo). Full setup, including binding D1 from the Pages dashboard, is in `DEPLOY-visitor-globe.md`.
 
 ## Known limitations
 
