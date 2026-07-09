@@ -1326,6 +1326,10 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 .pchev{width:.5em;height:.5em;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg);transition:transform .2s var(--ease-snap);margin-bottom:.18em}
 .pdrop[open]>summary .pchev{transform:rotate(-135deg);margin-bottom:-.05em}
 .pdrop .teaser-body{margin-top:14px}
+.teaser-link{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf);text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-top:18px}
+.teaser-link:hover{color:var(--leaf-deep)}
+.teaser-title a{color:inherit;text-decoration:none;transition:color .2s var(--ease-snap)}
+.teaser-title a:hover{color:var(--leaf)}
 
 @media(max-width:640px){
   .page-hero{padding:calc(var(--nav-h,72px) + 60px) 0 0}
@@ -1386,15 +1390,14 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   <div class="proj-status rv">
     <span class="ps st-active"><span class="st-dot"></span>2 Active</span>
     <span class="ps st-upcoming"><span class="st-dot"></span>0 Upcoming</span>
-    <span class="ps st-done"><span class="st-dot"></span>0 Completed</span>
+    <span class="ps st-done"><span class="st-dot"></span>3 Completed</span>
   </div>
 
-  <!-- Projects header -->
+  <!-- Year group: 2026 -->
   <div class="soon-head rv">
-    <span class="section-no">01</span>
-    <span class="soon-label">Projects</span>
+    <span class="section-no">2026</span>
     <span class="soon-rule"></span>
-    <span class="soon-total">2 Total</span>
+    <span class="soon-total">4 Projects</span>
   </div>
 
   <div class="teaser rv">
@@ -1435,6 +1438,76 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
       <span class="teaser-tag">Compliance Verification</span>
       <span class="teaser-tag">Team Project</span>
     </div>
+  </div>
+
+  <div class="teaser rv">
+    <div class="teaser-top">
+      <span class="teaser-kicker">Credit Risk &middot; XAI</span>
+      <span class="card-badge st-done"><span class="st-dot"></span>Completed</span>
+    </div>
+    <h2 class="teaser-title"><a href="https://github.com/hujiayu0211/esg-credit-risk-xai" target="_blank" rel="noopener">ESG-Augmented Corporate Credit Risk Prediction &amp; Explainability</a></h2>
+    <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
+      <p class="teaser-body">
+      An end-to-end machine-learning pipeline that predicts corporate credit risk for Chinese A-share firms from 18 firm-level features (financial ratios, market signals, and ESG scores) and explains the model through a four-layer SHAP analysis, built on a 42,108 firm-year panel (5,423 firms, 2015&ndash;2025). The target is the Merton/KMV distance-to-default rather than an accounting Z-score, which leaves room to test, by firm-grouped ablation, whether ESG carries incremental information about credit risk. Test R&sup2; reaches 0.683, and next-year distress classification reaches ROC-AUC 0.923.
+    </p>
+    </details>
+    <div class="teaser-tags">
+      <span class="teaser-tag">XGBoost</span>
+      <span class="teaser-tag">SHAP</span>
+      <span class="teaser-tag">Distance-to-Default</span>
+      <span class="teaser-tag">ESG</span>
+      <span class="teaser-tag">CSMAR</span>
+    </div>
+    <a class="teaser-link" href="https://github.com/hujiayu0211/esg-credit-risk-xai" target="_blank" rel="noopener">Code &#8599;</a>
+  </div>
+
+  <div class="teaser rv">
+    <div class="teaser-top">
+      <span class="teaser-kicker">Quantitative Finance</span>
+      <span class="card-badge st-done"><span class="st-dot"></span>Completed</span>
+    </div>
+    <h2 class="teaser-title"><a href="https://github.com/hujiayu0211/Multi-Factor-Quant-Stock-Selection" target="_blank" rel="noopener">Multi-Factor Quantitative Stock Selection &amp; Backtesting</a></h2>
+    <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
+      <p class="teaser-body">
+      An end-to-end multi-factor stock-selection and backtesting pipeline that scores the equity cross-section from eight factors (value, quality, momentum, liquidity, size, and three risk factors), combines them two ways (an IC-weighted linear composite and a LightGBM walk-forward model), and evaluates everything with rank-IC, ICIR, factor decay, and a monthly-rebalanced quantile backtest against a market benchmark. It runs on a China A-share panel of 498,893 stock-months across 5,546 firms (2015&ndash;2025, delisted firms included), with strict point-in-time discipline so no factor uses data the market had not yet seen.
+    </p>
+    </details>
+    <div class="teaser-tags">
+      <span class="teaser-tag">Multi-Factor</span>
+      <span class="teaser-tag">LightGBM</span>
+      <span class="teaser-tag">Rank-IC</span>
+      <span class="teaser-tag">Backtesting</span>
+      <span class="teaser-tag">Point-in-Time</span>
+    </div>
+    <a class="teaser-link" href="https://github.com/hujiayu0211/Multi-Factor-Quant-Stock-Selection" target="_blank" rel="noopener">Code &#8599;</a>
+  </div>
+
+  <!-- Year group: 2023 -->
+  <div class="soon-head rv">
+    <span class="section-no">2023</span>
+    <span class="soon-rule"></span>
+    <span class="soon-total">1 Project</span>
+  </div>
+
+  <div class="teaser rv">
+    <div class="teaser-top">
+      <span class="teaser-kicker">Conservation Analytics</span>
+      <span class="card-badge st-done"><span class="st-dot"></span>Completed</span>
+    </div>
+    <h2 class="teaser-title"><a href="https://github.com/hujiayu0211/Chinese-White-Dolphin-Conservation-Analytics" target="_blank" rel="noopener">Chinese White Dolphin Habitat Loss &amp; Conservation</a></h2>
+    <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
+      <p class="teaser-body">
+      A reproducible conservation-analytics study of how Chinese White Dolphin occurrence and core habitat changed across 2012&ndash;2022 in the western waters of Hong Kong, and how that change aligns with large-scale reclamation for the Hong Kong&ndash;Zhuhai&ndash;Macau Bridge and the airport's Three-Runway System. It turns AFCD marine-mammal monitoring and EPD water-quality archives into a single model-ready panel, then runs an effort-controlled trend model, water-quality diagnostics, and spatial habitat-shift maps. After controlling for survey effort, the on-effort sighting rate fell about 12.4% per year, while the 50% core-use area contracted from 45 to 26&nbsp;km&sup2; and shifted southwest, away from the reclamation front.
+    </p>
+    </details>
+    <div class="teaser-tags">
+      <span class="teaser-tag">Spatial Analysis</span>
+      <span class="teaser-tag">Trend Modelling</span>
+      <span class="teaser-tag">Conservation</span>
+      <span class="teaser-tag">Reproducible Panel</span>
+      <span class="teaser-tag">Python</span>
+    </div>
+    <a class="teaser-link" href="https://github.com/hujiayu0211/Chinese-White-Dolphin-Conservation-Analytics" target="_blank" rel="noopener">Code &#8599;</a>
   </div>
 
 </div>
