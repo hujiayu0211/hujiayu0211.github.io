@@ -1291,6 +1291,9 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 .hw-country .cname{flex:1;font-size:.96rem;color:var(--text-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .hw-country .ccount{font-family:var(--mono);font-size:12px;color:var(--leaf);font-weight:500}
 .hw-country-empty{color:var(--text-faint);font-size:.95rem}
+.hw-country-more{margin-top:18px}
+.hw-country-toggle{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf);background:none;border:none;cursor:pointer;padding:0}
+.hw-country-toggle:hover{color:var(--leaf-deep)}
 @media(max-width:640px){.hw-country-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -1379,6 +1382,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
       <span class="hw-heat-sub" id="hwCountryCount"></span>
     </div>
     <div class="hw-country-grid" id="hwCountryGrid"></div>
+    <div class="hw-country-more" id="hwCountryMore"></div>
   </div>
 
   <p class="hello-note rv">
@@ -1486,23 +1490,41 @@ if(dropdown && moreButton && moreMenu){
   var REGION=(function(){try{return new Intl.DisplayNames(['en'],{type:'region'});}catch(e){return null;}})();
   function flagEmoji(cc){
     if(!cc||cc.length!==2)return '\u{1F3F3}';
-    cc=cc.toUpperCase();var A=0x1F1E6,base=65;
+    cc=cc.toUpperCase();
+    if(cc==='TW')cc='CN';
+    var A=0x1F1E6,base=65;
     return String.fromCodePoint(A+cc.charCodeAt(0)-base)+String.fromCodePoint(A+cc.charCodeAt(1)-base);
   }
-  function countryName(cc){if(REGION){try{var n=REGION.of(cc);if(n)return n;}catch(e){}}return cc;}
+  function countryName(cc){
+    if(cc&&cc.toUpperCase()==='TW')return 'Taiwan (China)';
+    if(REGION){try{var n=REGION.of(cc);if(n)return n;}catch(e){}}return cc;
+  }
   function renderCountryList(points){
-    var grid=document.getElementById('hwCountryGrid'),sub=document.getElementById('hwCountryCount');
+    var grid=document.getElementById('hwCountryGrid'),
+        sub=document.getElementById('hwCountryCount'),
+        more=document.getElementById('hwCountryMore');
     if(!grid)return;
     var map={};
     (points||[]).forEach(function(p){var cc=p.country;if(!cc)return;map[cc]=(map[cc]||0)+(p.count||1);});
     var arr=Object.keys(map).map(function(cc){return {cc:cc,n:map[cc]};});
     arr.sort(function(a,b){return b.n-a.n;});
-    var total=arr.length; arr=arr.slice(0,10);
-    if(sub)sub.textContent=total?(total<=10?(total+(total===1?' country':' countries')):('Top 10 of '+total)):'';
-    if(!arr.length){grid.innerHTML='<span class="hw-country-empty">No visits recorded yet.</span>';return;}
-    grid.innerHTML=arr.map(function(o){
+    var total=arr.length;
+    if(sub)sub.textContent=total?(total+(total===1?' country':' countries')):'';
+    if(!total){grid.innerHTML='<span class="hw-country-empty">No visits recorded yet.</span>';if(more)more.innerHTML='';return;}
+    var CAP=18;
+    function rowHTML(o){
       return '<div class="hw-country"><span class="flag">'+flagEmoji(o.cc)+'</span><span class="cname">'+countryName(o.cc)+'</span><span class="ccount">'+o.n.toLocaleString()+'</span></div>';
-    }).join('');
+    }
+    function render(showAll){
+      grid.innerHTML=(showAll?arr:arr.slice(0,CAP)).map(rowHTML).join('');
+      if(more){
+        if(total>CAP){
+          more.innerHTML='<button class="hw-country-toggle" type="button">'+(showAll?'Show less':('Show all '+total+' \u2192'))+'</button>';
+          more.firstChild.onclick=function(){render(!showAll);};
+        }else{more.innerHTML='';}
+      }
+    }
+    render(false);
   }
 
 
