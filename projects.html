@@ -1405,21 +1405,25 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 
   <div class="teaser rv">
     <div class="teaser-top">
-      <span class="teaser-kicker">Research System</span>
+      <span class="teaser-kicker">Benchmark &middot; Evaluation</span>
       <span class="card-badge st-active"><span class="st-dot"></span>Active</span>
     </div>
-    <h2 class="teaser-title">AI-Assisted ESG Report Extraction &amp; Evidence-Mapping System</h2>
+    <h2 class="teaser-title">Reproducible Diagnostics &amp; Benchmark Design for ESG Disclosure Assessment</h2>
     <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
       <p class="teaser-body">
-      A pipeline that transforms unstructured corporate sustainability reports into structured, traceable, and auditable evidence. The system extracts disclosure claims from multimodal reporting materials, links each claim back to its source passage, and prepares the data for downstream consistency checking, greenwashing-gap detection, and empirical analysis &mdash; combining retrieval-augmented generation with schema-based ESG framework mapping (GRI, SASB, AASB&nbsp;S1/S2).
+      Work in progress on the evaluation layer that ESG disclosure systems currently lack. The project improves the experiment-relevant parts of an existing disclosure database, builds an independently annotated benchmark on top of it, and develops diagnostics that test whether a reported score reflects genuine assessment quality or an artefact of how the reference labels were produced. The corpus was developed by <a class="link" href="https://github.com/Mirandababy07" target="_blank" rel="noopener">Zherui Wang</a> (UNSW CSE) and is used with permission.
+    </p>
+    <p class="teaser-body">
+      Two directions follow from this foundation. The first is methodological and forms the basis of my current paper, representing what a reporting standard requires in a form a machine can check against evidence, and testing whether those judgements stay stable when unrelated impressions about the same company change. The second is empirical, treating the verified criterion-level measures as research data in order to study how disclosure quality varies across firms, standards and markets, and what that variation is associated with.
     </p>
     </details>
     <div class="teaser-tags">
-      <span class="teaser-tag">RAG</span>
-      <span class="teaser-tag">LLM</span>
-      <span class="teaser-tag">ESG Disclosure</span>
-      <span class="teaser-tag">Schema Mapping</span>
-      <span class="teaser-tag">Evidence Traceability</span>
+      <span class="teaser-tag">Benchmark Design</span>
+      <span class="teaser-tag">Annotation Protocol</span>
+      <span class="teaser-tag">Reproducibility</span>
+      <span class="teaser-tag">Evaluation</span>
+      <span class="teaser-tag">Empirical Research</span>
+      <span class="teaser-tag">AASB S2 / GRI</span>
     </div>
   </div>
 
@@ -1431,14 +1435,13 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
     <h2 class="teaser-title">Carbon Chain</h2>
     <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
       <p class="teaser-body">
-      A cross-border sustainability-compliance verification tool for Chinese exporters navigating divergent regulatory regimes &mdash; including the EU (CBAM, Battery Regulation), Australia (AASB&nbsp;S2 / ASRS), and Hong Kong (HKEX, ISSB-aligned). Carbon Chain helps firms map their disclosures against each jurisdiction's requirements and surface compliance gaps before they become trade barriers. Entered in the China International College Students&rsquo; Innovation Competition.
-    </p>
+     A team entry for the China International College Students&rsquo; Innovation Competition 2026, built on the EulerESG platform. The system represents ESG entities, claim-evidence relations, provenance and time in a four-layer graph, and scores how far a disclosure claim is actually supported by traceable evidence, counting independent sources rather than repeated documents. A pilot corpus of 48 sustainability and annual reports from 10 A-share and H-share issuers (2021&ndash;2025) supports early testing, with planned extension to Chinese disclosure rules.
     </details>
     <div class="teaser-tags">
-      <span class="teaser-tag">CBAM</span>
-      <span class="teaser-tag">AASB S2 / ASRS</span>
-      <span class="teaser-tag">ISSB</span>
-      <span class="teaser-tag">Compliance Verification</span>
+      <span class="teaser-tag">Knowledge Graph</span>
+      <span class="teaser-tag">Evidence Traceability</span>
+      <span class="teaser-tag">Provenance</span>
+      <span class="teaser-tag">A-share / H-share</span>
       <span class="teaser-tag">Team Project</span>
     </div>
   </div>
@@ -1450,7 +1453,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
     </div>
     <h2 class="teaser-title"><a href="https://github.com/hujiayu0211/esg-credit-risk-xai" target="_blank" rel="noopener">ESG-Augmented Corporate Credit Risk Prediction &amp; Explainability</a></h2>
     <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
-      <p class="teaser-body">
+     <p class="teaser-body">
       An end-to-end machine-learning pipeline that predicts corporate credit risk for Chinese A-share firms from 18 firm-level features (financial ratios, market signals, and ESG scores) and explains the model through a four-layer SHAP analysis, built on a 42,108 firm-year panel (5,423 firms, 2015&ndash;2025). The target is the Merton/KMV distance-to-default rather than an accounting Z-score, which leaves room to test, by firm-grouped ablation, whether ESG carries incremental information about credit risk. Test R&sup2; reaches 0.683, and next-year distress classification reaches ROC-AUC 0.923.
     </p>
     </details>
