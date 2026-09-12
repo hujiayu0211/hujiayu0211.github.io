@@ -1253,7 +1253,10 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
    所以按张微调缩放与锚点 */
 .life-card:nth-child(1) .life-bg{background-size:auto 104%;background-position:right 62%}
 .life-card:nth-child(2) .life-bg{background-size:auto 100%;background-position:right center}
-.life-card:nth-child(3) .life-bg{background-size:auto 100%;background-position:right bottom;opacity:.4}
+/* 03 换成横构图的海边长椅，需要更宽的画面区域，遮罩负责左缘淡出 */
+.life-card:nth-child(3) .life-bg{width:88%;background-size:auto 78%;background-position:right 86%;opacity:.66;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.18) 30%,#000 66%);
+          mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.18) 30%,#000 66%)}
 .life-card:nth-child(4) .life-bg{background-size:auto 104%;background-position:right 42%}
 
 @media(prefers-reduced-motion:reduce){
