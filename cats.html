@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live My Life · Jasper (Jiayu Hu)</title>
-<meta name="description" content="Life beyond research — cities I have visited, music I love, my own photos, and my cat. Coming soon.">
+<title>Cats · Jasper (Jiayu Hu)</title>
+<meta name="description" content="The most photographed residents of the house.">
 
 <link rel="icon" type="image/png" href="assets/logo/UNSW-logo.png">
 <link rel="apple-touch-icon" href="assets/logo/UNSW-logo.png">
@@ -1185,9 +1185,6 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   overflow:hidden;
   transition:transform .5s var(--ease-soft), box-shadow .5s var(--ease-soft);
 }
-.life-card.is-soon{box-shadow:none;border-style:dashed}
-.life-card.is-soon:hover{transform:none;box-shadow:none}
-.life-card.is-soon .life-bg{opacity:.5;filter:saturate(.5)}
 .life-card:hover{
   transform:translateY(-5px);
   box-shadow:0 1px 2px rgba(40,42,34,.04), 0 26px 56px -30px rgba(40,42,34,.34);
@@ -1225,42 +1222,6 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   100%{box-shadow:0 0 0 0 rgba(168,110,50,0)}
 }
 
-/* 可进入的卡片上的入口标记 */
-.life-go{
-  margin-top:18px;
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--leaf);
-}
-.life-go .arr{transition:transform .3s var(--ease-soft)}
-.life-card:hover .life-go .arr{transform:translateX(4px)}
-
-/* 卡片右侧的插画：底部/右侧出血，左缘用渐变遮罩淡入白卡 */
-.life-bg{
-  position:absolute;inset:0 0 0 auto;width:64%;z-index:0;pointer-events:none;
-  background-repeat:no-repeat;background-position:center right;background-size:cover;
-  opacity:.92;
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.28) 20%,#000 56%);
-          mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.28) 20%,#000 56%);
-  transition:transform .8s var(--ease-soft),opacity .6s var(--ease-soft);
-}
-.life-card:hover .life-bg{transform:scale(1.045);opacity:1}
-/* 文字必须提到插画之上 */
-.life-num,.life-card h2,.life-card p,.life-soon,.life-go{position:relative;z-index:1}
-.life-card p{max-width:23ch}
-
-/* 四张原图比例差很多（1.85 / 1.25 / 0.72 / 1.61），统一 cover 会让窄图被过度放大，
-   所以按张微调缩放与锚点 */
-.life-card:nth-child(1) .life-bg{background-size:auto 104%;background-position:right 62%}
-.life-card:nth-child(2) .life-bg{background-size:auto 100%;background-position:right center}
-.life-card:nth-child(3) .life-bg{background-size:auto 100%;background-position:right bottom;opacity:.4}
-.life-card:nth-child(4) .life-bg{background-size:auto 104%;background-position:right 42%}
-
-@media(prefers-reduced-motion:reduce){
-  .life-bg{transition:none}
-  .life-card:hover .life-bg{transform:none}
-}
-
 /* decorative motif, top-right of each card */
 .life-motif{
   position:absolute;top:24px;right:24px;
@@ -1283,6 +1244,37 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   .page-hero{padding:calc(var(--nav-h,72px) + 60px) 0 0}
   .life-grid{grid-template-columns:1fr;gap:16px}
   .life-card{min-height:240px}
+}
+
+/* ============ CATS ============ */
+.back-link{display:inline-flex;align-items:center;gap:8px;margin-top:30px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-faint);transition:color .2s}
+.back-link:hover{color:var(--leaf)}
+
+.cats-page{padding:46px 0 96px}
+.cats-meta{display:flex;flex-wrap:wrap;gap:22px;margin:0 0 30px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+.cats-meta b{color:var(--leaf);font-weight:500}
+
+/* 多列瀑布流：横竖比例原样保留，一个像素都不裁 */
+.cat-wall{column-count:3;column-gap:18px}
+.cat-shot{break-inside:avoid;margin:0 0 18px;border-radius:14px;overflow:hidden;
+  background:var(--panel-2);box-shadow:var(--shadow);
+  transition:box-shadow .4s var(--ease-soft)}
+.cat-shot:hover{box-shadow:0 2px 6px rgba(40,42,34,.07),0 26px 56px -28px rgba(40,42,34,.42)}
+.cat-shot img{display:block;width:100%;height:auto;
+  transform:scale(1);transition:transform .7s var(--ease-soft)}
+.cat-shot:hover img{transform:scale(1.055)}
+
+@media(max-width:900px){ .cat-wall{column-count:2;column-gap:14px} .cat-shot{margin-bottom:14px} }
+@media(max-width:560px){
+  .page-hero{padding:calc(var(--nav-h,72px) + 60px) 0 0}
+  .cat-wall{column-count:1}
+}
+@media(prefers-reduced-motion:reduce){
+  .cat-shot img{transition:none}
+  .cat-shot:hover img{transform:none}
 }
 
 </style>
@@ -1315,48 +1307,44 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 <!-- ============ PAGE HERO ============ -->
 <header class="page-hero" id="top">
   <div class="wrap">
-    <div class="eyebrow rv"><span class="ln"></span>Beyond the Research</div>
-    <h1 class="page-title rv">Live My Life<span class="dot">.</span></h1>
-    <p class="page-lead rv">The parts of me that don't fit on a CV. The places I've been, the music I keep returning to, and the company I keep.</p>
+    <div class="eyebrow rv"><span class="ln"></span>04 &middot; Live My Life</div>
+    <h1 class="page-title rv">Cats<span class="dot">.</span></h1>
+    <p class="page-lead rv">The most photographed residents of the house.</p>
+    <a class="back-link rv" href="live-my-life.html">&larr; Back to Live My Life</a>
   </div>
 </header>
 
 <div class="wrap">
-<section class="life-page">
-  <div class="life-grid">
-
-    <a class="life-card rv" href="footprints.html">
-      <div class="life-bg" style="background-image:url(assets/img/life/footprints.webp)"></div>
-      <span class="life-num">01</span>
-      <h2>Footprints</h2>
-      <p>From Jinchang to Lanzhou, Zhuhai and Sydney, with twenty-six cities along the way.</p>
-      <span class="life-go">Explore <span class="arr">&rarr;</span></span>
-    </a>
-
-    <a class="life-card rv" href="on-repeat.html">
-      <div class="life-bg" style="background-image:url(assets/img/life/on-repeat.webp)"></div>
-      <span class="life-num">02</span>
-      <h2>On Repeat</h2>
-      <p>Twenty-eight songs I keep going back to, grouped by language and playable here.</p>
-      <span class="life-go">Explore <span class="arr">&rarr;</span></span>
-    </a>
-
-    <article class="life-card is-soon rv">
-      <div class="life-bg" style="background-image:url(assets/img/life/portraits.webp)"></div>
-      <span class="life-num">03</span>
-      <h2>Portraits</h2>
-      <p>A few photographs of my own. Moments worth keeping.</p>
-      <span class="life-soon"><span class="pulse"></span>Coming soon</span>
-    </article>
-
-    <a class="life-card rv" href="cats.html">
-      <div class="life-bg" style="background-image:url(assets/img/life/cats.webp)"></div>
-      <span class="life-num">04</span>
-      <h2>Cats</h2>
-      <p>The most photographed residents of the house.</p>
-      <span class="life-go">Explore <span class="arr">&rarr;</span></span>
-    </a>
-
+<section class="cats-page">
+  <div class="cats-meta rv">
+    <span><b>6</b> Photographs</span>
+    <span>Shot on a phone, mostly at home</span>
+  </div>
+  <div class="cat-wall">
+      <figure class="cat-shot rv">
+        <img src="assets/photo/cats/cat1.jpg" width="1440" height="1080"
+             alt="" loading="eager" decoding="async">
+      </figure>
+      <figure class="cat-shot rv">
+        <img src="assets/photo/cats/cat2.jpg" width="1279" height="1706"
+             alt="" loading="eager" decoding="async">
+      </figure>
+      <figure class="cat-shot rv">
+        <img src="assets/photo/cats/cat3.jpg" width="1440" height="1920"
+             alt="" loading="lazy" decoding="async">
+      </figure>
+      <figure class="cat-shot rv">
+        <img src="assets/photo/cats/cat4.jpg" width="1279" height="1706"
+             alt="" loading="lazy" decoding="async">
+      </figure>
+      <figure class="cat-shot rv">
+        <img src="assets/photo/cats/cat5.jpg" width="1279" height="1706"
+             alt="" loading="lazy" decoding="async">
+      </figure>
+      <figure class="cat-shot rv">
+        <img src="assets/photo/cats/cat6.jpg" width="1279" height="1706"
+             alt="" loading="lazy" decoding="async">
+      </figure>
   </div>
 </section>
 </div>
@@ -1382,7 +1370,7 @@ if('ResizeObserver' in window&&navEl){new ResizeObserver(updateNavOffset).observ
 
 const currentPage=(location.pathname.split('/').pop()||'index.html').toLowerCase();
 document.querySelectorAll('.nav-links a[data-page]').forEach(link=>{link.classList.toggle('active',link.dataset.page.toLowerCase()===currentPage);});
-const morePages=['live-my-life.html','hello-world.html'];
+const morePages=['live-my-life.html','hello-world.html','footprints.html','on-repeat.html','cats.html'];
 const dropdown=document.querySelector('.dropdown'),moreButton=document.querySelector('.nav-more'),moreMenu=document.getElementById('moreMenu');
 if(moreButton&&morePages.includes(currentPage))moreButton.classList.add('active');
 function closeMoreMenu(){if(!dropdown||!moreButton)return;dropdown.classList.remove('open');moreButton.setAttribute('aria-expanded','false');}

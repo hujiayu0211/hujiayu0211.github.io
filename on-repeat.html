@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Live My Life · Jasper (Jiayu Hu)</title>
-<meta name="description" content="Life beyond research — cities I have visited, music I love, my own photos, and my cat. Coming soon.">
+<title>On Repeat · Jasper (Jiayu Hu)</title>
+<meta name="description" content="What I have been listening to lately, grouped by language and playable here.">
 
 <link rel="icon" type="image/png" href="assets/logo/UNSW-logo.png">
 <link rel="apple-touch-icon" href="assets/logo/UNSW-logo.png">
@@ -1185,9 +1185,6 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   overflow:hidden;
   transition:transform .5s var(--ease-soft), box-shadow .5s var(--ease-soft);
 }
-.life-card.is-soon{box-shadow:none;border-style:dashed}
-.life-card.is-soon:hover{transform:none;box-shadow:none}
-.life-card.is-soon .life-bg{opacity:.5;filter:saturate(.5)}
 .life-card:hover{
   transform:translateY(-5px);
   box-shadow:0 1px 2px rgba(40,42,34,.04), 0 26px 56px -30px rgba(40,42,34,.34);
@@ -1225,42 +1222,6 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   100%{box-shadow:0 0 0 0 rgba(168,110,50,0)}
 }
 
-/* 可进入的卡片上的入口标记 */
-.life-go{
-  margin-top:18px;
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--leaf);
-}
-.life-go .arr{transition:transform .3s var(--ease-soft)}
-.life-card:hover .life-go .arr{transform:translateX(4px)}
-
-/* 卡片右侧的插画：底部/右侧出血，左缘用渐变遮罩淡入白卡 */
-.life-bg{
-  position:absolute;inset:0 0 0 auto;width:64%;z-index:0;pointer-events:none;
-  background-repeat:no-repeat;background-position:center right;background-size:cover;
-  opacity:.92;
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.28) 20%,#000 56%);
-          mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.28) 20%,#000 56%);
-  transition:transform .8s var(--ease-soft),opacity .6s var(--ease-soft);
-}
-.life-card:hover .life-bg{transform:scale(1.045);opacity:1}
-/* 文字必须提到插画之上 */
-.life-num,.life-card h2,.life-card p,.life-soon,.life-go{position:relative;z-index:1}
-.life-card p{max-width:23ch}
-
-/* 四张原图比例差很多（1.85 / 1.25 / 0.72 / 1.61），统一 cover 会让窄图被过度放大，
-   所以按张微调缩放与锚点 */
-.life-card:nth-child(1) .life-bg{background-size:auto 104%;background-position:right 62%}
-.life-card:nth-child(2) .life-bg{background-size:auto 100%;background-position:right center}
-.life-card:nth-child(3) .life-bg{background-size:auto 100%;background-position:right bottom;opacity:.4}
-.life-card:nth-child(4) .life-bg{background-size:auto 104%;background-position:right 42%}
-
-@media(prefers-reduced-motion:reduce){
-  .life-bg{transition:none}
-  .life-card:hover .life-bg{transform:none}
-}
-
 /* decorative motif, top-right of each card */
 .life-motif{
   position:absolute;top:24px;right:24px;
@@ -1283,6 +1244,71 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   .page-hero{padding:calc(var(--nav-h,72px) + 60px) 0 0}
   .life-grid{grid-template-columns:1fr;gap:16px}
   .life-card{min-height:240px}
+}
+
+/* ============ ON REPEAT — ACCORDION ============ */
+.back-link{display:inline-flex;align-items:center;gap:8px;margin-top:30px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-faint);transition:color .2s}
+.back-link:hover{color:var(--leaf)}
+.or-page{padding:46px 0 96px}
+.or-meta{display:flex;flex-wrap:wrap;gap:22px;margin:0 0 30px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+.or-meta b{color:var(--leaf);font-weight:500}
+.acc{border-top:1px solid var(--line)}
+.acc-item{border-bottom:1px solid var(--line)}
+.acc-head{width:100%;display:flex;align-items:center;gap:16px;padding:22px 4px;
+  background:none;border:0;cursor:pointer;text-align:left;
+  font-family:var(--serif);font-size:clamp(1.2rem,2.3vw,1.58rem);font-weight:500;
+  letter-spacing:-.01em;color:var(--text);transition:color .25s}
+.acc-head:hover{color:var(--leaf)}
+.acc-head:focus-visible{outline:2px solid var(--leaf);outline-offset:3px;border-radius:6px}
+.acc-count{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--text-faint);
+  border:1px solid var(--line);border-radius:999px;padding:3px 9px;flex:none}
+.acc-sign{margin-left:auto;flex:none;position:relative;width:15px;height:15px}
+.acc-sign::before,.acc-sign::after{content:"";position:absolute;background:var(--leaf-dim);
+  transition:transform .4s var(--ease-soft),background .25s}
+.acc-sign::before{left:0;top:7px;width:15px;height:1.5px}
+.acc-sign::after{left:6.75px;top:0;width:1.5px;height:15px}
+.acc-head[aria-expanded="true"] .acc-sign::after{transform:rotate(90deg)}
+.acc-head[aria-expanded="true"] .acc-sign::before,
+.acc-head[aria-expanded="true"] .acc-sign::after{background:var(--leaf)}
+.acc-panel{overflow:hidden;height:0;transition:height .52s var(--ease-soft)}
+.acc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;padding:2px 2px 28px}
+/* min-height 让卡片在播放器创建之前就占住位置，面板高度才算得准 */
+/* 卡片本体就是骨架屏：深色底 + 封面方块 + 两条文字条，
+   播放器载入后直接盖在上面，因为形状底色已经一致，看不出跳变 */
+.or-tile{position:relative;min-height:152px;border-radius:12px;background:#121212;
+  box-shadow:var(--shadow);
+  opacity:0;transform:translateY(14px);
+  transition:opacity .5s var(--ease-soft),transform .5s var(--ease-soft),box-shadow .35s var(--ease-soft)}
+.or-tile.in{opacity:1;transform:none}
+.or-tile:hover{box-shadow:0 2px 5px rgba(40,42,34,.06),0 22px 50px -26px rgba(40,42,34,.38)}
+.or-tile::before{
+  content:"";position:absolute;inset:0;border-radius:12px;pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.07),rgba(255,255,255,.07)) 16px 16px/120px 120px no-repeat,
+    linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)) 152px 44px/112px 14px no-repeat,
+    linear-gradient(rgba(255,255,255,.05),rgba(255,255,255,.05)) 152px 72px/76px 11px no-repeat;
+  animation:tileShimmer 1.7s ease-in-out infinite;
+}
+@keyframes tileShimmer{0%,100%{opacity:.5}50%{opacity:1}}
+/* iframe 是 ::before 之后的子元素，绘制顺序在上，载入后自然覆盖骨架 */
+.or-tile iframe{position:relative;width:100%;height:152px;border:0;display:block;border-radius:12px;
+  opacity:1;transition:opacity .32s var(--ease-soft)}
+.or-tile iframe.loading{opacity:0}
+.or-foot{margin-top:34px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-faint)}
+@media(max-width:720px){
+  .page-hero{padding:calc(var(--nav-h,72px) + 60px) 0 0}
+  .acc-head{padding:19px 2px;gap:12px}
+  .acc-grid{grid-template-columns:1fr;gap:14px;padding-bottom:22px}
+}
+@media(prefers-reduced-motion:reduce){
+  .acc-panel{transition:none}
+  .or-tile{opacity:1;transform:none;transition:none}
+  .or-tile::before{animation:none;opacity:.75}
+  .or-tile iframe{transition:none}
 }
 
 </style>
@@ -1315,49 +1341,22 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 <!-- ============ PAGE HERO ============ -->
 <header class="page-hero" id="top">
   <div class="wrap">
-    <div class="eyebrow rv"><span class="ln"></span>Beyond the Research</div>
-    <h1 class="page-title rv">Live My Life<span class="dot">.</span></h1>
-    <p class="page-lead rv">The parts of me that don't fit on a CV. The places I've been, the music I keep returning to, and the company I keep.</p>
+    <div class="eyebrow rv"><span class="ln"></span>02 &middot; Live My Life</div>
+    <h1 class="page-title rv">On Repeat<span class="dot">.</span></h1>
+    <p class="page-lead rv">What I have been listening to lately, grouped by language. Open a section and press play.</p>
+    <a class="back-link rv" href="live-my-life.html">&larr; Back to Live My Life</a>
   </div>
 </header>
 
 <div class="wrap">
-<section class="life-page">
-  <div class="life-grid">
-
-    <a class="life-card rv" href="footprints.html">
-      <div class="life-bg" style="background-image:url(assets/img/life/footprints.webp)"></div>
-      <span class="life-num">01</span>
-      <h2>Footprints</h2>
-      <p>From Jinchang to Lanzhou, Zhuhai and Sydney, with twenty-six cities along the way.</p>
-      <span class="life-go">Explore <span class="arr">&rarr;</span></span>
-    </a>
-
-    <a class="life-card rv" href="on-repeat.html">
-      <div class="life-bg" style="background-image:url(assets/img/life/on-repeat.webp)"></div>
-      <span class="life-num">02</span>
-      <h2>On Repeat</h2>
-      <p>Twenty-eight songs I keep going back to, grouped by language and playable here.</p>
-      <span class="life-go">Explore <span class="arr">&rarr;</span></span>
-    </a>
-
-    <article class="life-card is-soon rv">
-      <div class="life-bg" style="background-image:url(assets/img/life/portraits.webp)"></div>
-      <span class="life-num">03</span>
-      <h2>Portraits</h2>
-      <p>A few photographs of my own. Moments worth keeping.</p>
-      <span class="life-soon"><span class="pulse"></span>Coming soon</span>
-    </article>
-
-    <a class="life-card rv" href="cats.html">
-      <div class="life-bg" style="background-image:url(assets/img/life/cats.webp)"></div>
-      <span class="life-num">04</span>
-      <h2>Cats</h2>
-      <p>The most photographed residents of the house.</p>
-      <span class="life-go">Explore <span class="arr">&rarr;</span></span>
-    </a>
-
+<section class="or-page">
+  <div class="or-meta rv">
+    <span><b id="trackCount">0</b> Tracks</span>
+    <span><b>5</b> Sections</span>
+    <span>Played through Spotify</span>
   </div>
+  <div class="acc rv" id="acc"></div>
+  <p class="or-foot rv">Updated September 2026</p>
 </section>
 </div>
 
@@ -1368,6 +1367,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   </div>
 </footer>
 
+<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
 <script>
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
@@ -1382,7 +1382,7 @@ if('ResizeObserver' in window&&navEl){new ResizeObserver(updateNavOffset).observ
 
 const currentPage=(location.pathname.split('/').pop()||'index.html').toLowerCase();
 document.querySelectorAll('.nav-links a[data-page]').forEach(link=>{link.classList.toggle('active',link.dataset.page.toLowerCase()===currentPage);});
-const morePages=['live-my-life.html','hello-world.html'];
+const morePages=['live-my-life.html','hello-world.html','footprints.html','on-repeat.html'];
 const dropdown=document.querySelector('.dropdown'),moreButton=document.querySelector('.nav-more'),moreMenu=document.getElementById('moreMenu');
 if(moreButton&&morePages.includes(currentPage))moreButton.classList.add('active');
 function closeMoreMenu(){if(!dropdown||!moreButton)return;dropdown.classList.remove('open');moreButton.setAttribute('aria-expanded','false');}
@@ -1392,6 +1392,299 @@ if(dropdown&&moreButton&&moreMenu){
   document.addEventListener('click',e=>{if(!dropdown.contains(e.target))closeMoreMenu();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMoreMenu();moreButton.blur();}});
 }
+
+/* ============ ON REPEAT ============ */
+/* Spotify IFrame API：脚本异步加载，回调必须先定义好 */
+var SPOT = null, SPOT_Q = [];
+window.onSpotifyIframeApiReady = function(API){
+  SPOT = API;
+  var q = SPOT_Q; SPOT_Q = [];
+  q.forEach(function(fn){ fn(API); });
+};
+function withSpotify(fn){ SPOT ? fn(SPOT) : SPOT_Q.push(fn); }
+
+/* 同一时间只允许一个播放器发声 */
+var CURRENT = null;
+function claim(ctrl){
+  if(CURRENT === ctrl) return;
+  if(CURRENT){ try{ CURRENT.pause(); }catch(e){} }
+  CURRENT = ctrl;
+}
+function release(ctrl){ if(CURRENT === ctrl) CURRENT = null; }
+
+const GROUPS = [
+  {
+    "id": "jay",
+    "label": "周杰倫 · Jay Chou",
+    "tracks": [
+      {
+        "i": "3ZsPujeG0eWb4o3VkrHKd5",
+        "t": "妳聽得到",
+        "a": "Jay Chou"
+      },
+      {
+        "i": "57w29bSwdIZ6gr6xXOqwc1",
+        "t": "七里香",
+        "a": "Jay Chou"
+      },
+      {
+        "i": "1oLmDOpJtIMFdRFBXdnOvj",
+        "t": "夜曲",
+        "a": "Jay Chou"
+      },
+      {
+        "i": "0GvxoZAzrqS7bFEHFHsfd4",
+        "t": "髮如雪",
+        "a": "Jay Chou"
+      },
+      {
+        "i": "10VuSw48iPN2UK2xX9Y6P0",
+        "t": "青花瓷",
+        "a": "Jay Chou"
+      }
+    ]
+  },
+  {
+    "id": "mandarin",
+    "label": "華語 · Mandarin",
+    "tracks": [
+      {
+        "i": "78E40DUsI511l4qx1ZALBx",
+        "t": "凍結",
+        "a": "JJ Lin"
+      },
+      {
+        "i": "0YgvF6fNWydNGzCY3pzK4Y",
+        "t": "江南",
+        "a": "JJ Lin"
+      },
+      {
+        "i": "4RXSFfXRMPAzjm2B51ZzUU",
+        "t": "昆明湖",
+        "a": "後弦"
+      },
+      {
+        "i": "740KtWw1r4f5Gd6UXzhYNp",
+        "t": "心跳",
+        "a": "Leehom Wang"
+      },
+      {
+        "i": "5oL7vOxCz2eJKAX6G4Yluh",
+        "t": "情歌",
+        "a": "Fish Leong"
+      },
+      {
+        "i": "5vC11Sc6kaWZwP79PQK9AA",
+        "t": "家书",
+        "a": "加木"
+      }
+    ]
+  },
+  {
+    "id": "cantonese",
+    "label": "粵語 · Cantonese",
+    "tracks": [
+      {
+        "i": "2AllsVsmrJkEwXPXwDBCQu",
+        "t": "單車",
+        "a": "Eason Chan"
+      },
+      {
+        "i": "3hU9nGBhYJQwvF8BJ4PUcE",
+        "t": "囍帖街",
+        "a": "Kay Tse"
+      },
+      {
+        "i": "7pJH3YXNRUvq0ctKirL13A",
+        "t": "人非草木",
+        "a": "Kary Ng"
+      },
+      {
+        "i": "7JX2ClsnxN9GirkOezr01O",
+        "t": "喜歡你",
+        "a": "G.E.M."
+      },
+      {
+        "i": "2FsrKLHO91CaT8vvY85DD6",
+        "t": "月球下的人",
+        "a": "Gin Lee"
+      },
+      {
+        "i": "2lMVTk3I232dE7jnkufOSt",
+        "t": "老派約會之必要",
+        "a": "MC 張天賦"
+      }
+    ]
+  },
+  {
+    "id": "english",
+    "label": "English",
+    "tracks": [
+      {
+        "i": "2zsWRxMcUdGjj8TnWkVKw0",
+        "t": "Hypnotic",
+        "a": "Zella Day"
+      },
+      {
+        "i": "7MXVkk9YMctZqd1Srtv4MB",
+        "t": "Starboy",
+        "a": "The Weeknd, Daft Punk"
+      },
+      {
+        "i": "6koe981h6mmlJUfupqiLgL",
+        "t": "Washingtons by Your Side",
+        "a": "Wiz Khalifa"
+      },
+      {
+        "i": "7lAK3oHbfEnvUQWosrMMpR",
+        "t": "YOSEMITE",
+        "a": "Travis Scott"
+      },
+      {
+        "i": "2YpeDb67231RjR0MgVLzsG",
+        "t": "Old Town Road (feat. Billy Ray Cyrus) - Remix",
+        "a": "Lil Nas X, Billy Ray Cyrus"
+      },
+      {
+        "i": "5Z9KJZvQzH6PFmb8SNkxuk",
+        "t": "INDUSTRY BABY (feat. Jack Harlow)",
+        "a": "Lil Nas X, Jack Harlow"
+      }
+    ]
+  },
+  {
+    "id": "korean",
+    "label": "한국어 · Korean",
+    "tracks": [
+      {
+        "i": "2dCYxIY1IrPXn30EawLI7W",
+        "t": "ROLY-POLY",
+        "a": "T-ARA"
+      },
+      {
+        "i": "3Q6ny7MOETlpX1VE83CzZE",
+        "t": "DAY BY DAY",
+        "a": "T-ARA"
+      },
+      {
+        "i": "5XWlyfo0kZ8LF7VSyfS4Ew",
+        "t": "Drama",
+        "a": "aespa"
+      },
+      {
+        "i": "5EoV2HmAlkqN1XvsIjOBZZ",
+        "t": "STYLE",
+        "a": "Hearts2Hearts"
+      },
+      {
+        "i": "2bAQsNqdo62T8akkIvWzGl",
+        "t": "RUDE!",
+        "a": "Hearts2Hearts"
+      }
+    ]
+  }
+];
+
+const acc = document.getElementById('acc');
+document.getElementById('trackCount').textContent =
+  GROUPS.reduce(function(n,g){ return n + g.tracks.length; }, 0);
+
+GROUPS.forEach(function(g, gi){
+  const item = document.createElement('section');
+  item.className = 'acc-item';
+  item.innerHTML =
+    '<h2 style="margin:0"><button class="acc-head" type="button" aria-expanded="false" aria-controls="panel-'+g.id+'">'
+    + '<span>'+g.label+'</span><span class="acc-count">'+g.tracks.length+'</span>'
+    + '<span class="acc-sign" aria-hidden="true"></span></button></h2>'
+    + '<div class="acc-panel" id="panel-'+g.id+'" role="region"><div class="acc-grid"></div></div>';
+  acc.appendChild(item);
+
+  const btn = item.querySelector('.acc-head');
+  const panel = item.querySelector('.acc-panel');
+  const grid = item.querySelector('.acc-grid');
+  let built = false;
+  let ctrls = [];
+
+  function build(){
+    if(built) return; built = true;
+    g.tracks.forEach(function(t){
+      const tile = document.createElement('div');
+      tile.className = 'or-tile';
+      const slot = document.createElement('div');
+      tile.appendChild(slot);
+      grid.appendChild(tile);
+      withSpotify(function(API){
+        if(!tile.isConnected) return;              /* 折叠后不再创建 */
+        API.createController(slot,
+          { uri:'spotify:track:'+t.i, width:'100%', height:152, theme:'dark' },
+          function(ctrl){
+            ctrls.push(ctrl);
+            /* 先藏住 iframe，等它真正载完再淡入，挡掉 Spotify 自己那一帧白底 */
+            const fr = tile.querySelector('iframe');
+            if(fr){
+              fr.classList.add('loading');
+              const show = function(){ fr.classList.remove('loading'); };
+              fr.addEventListener('load', show, { once:true });
+              setTimeout(show, 2500);          /* 兜底：load 若已触发过就不会再来 */
+            }
+            ctrl.addListener('playback_started', function(){ claim(ctrl); });
+            ctrl.addListener('playback_update', function(e){
+              const d = e && e.data;
+              if(!d) return;
+              if(d.isPaused === false) claim(ctrl);
+              else if(d.isPaused === true) release(ctrl);
+            });
+          });
+      });
+    });
+  }
+
+  /* 折叠后拆掉播放器：清掉 Spotify 那张关不掉的升级卡，内存也封顶在一组 */
+  function teardown(){
+    ctrls.forEach(function(c){
+      release(c);
+      try{ c.destroy(); }catch(e){}
+    });
+    ctrls = [];
+    grid.innerHTML = '';
+    built = false;
+  }
+
+  /* 两次赋值之间必须强制重排，否则 auto->0 被合并，动画不启动 */
+  function setOpen(on){
+    if(on) build();
+    btn.setAttribute('aria-expanded', on ? 'true' : 'false');
+    panel.style.height = panel.offsetHeight + 'px';
+    void panel.offsetHeight;
+    panel.style.height = on ? (grid.offsetHeight + 'px') : '0px';
+    const tiles = grid.querySelectorAll('.or-tile');
+    if(on){ tiles.forEach(function(el,i){ setTimeout(function(){ el.classList.add('in'); }, 70*i); }); }
+    else {
+      tiles.forEach(function(el){ el.classList.remove('in'); });
+      /* 用定时器而非 transitionend：关闭动效的用户不会收到 transitionend */
+      setTimeout(function(){
+        if(btn.getAttribute('aria-expanded') !== 'true') teardown();
+      }, 620);
+    }
+  }
+
+  panel.addEventListener('transitionend', function(e){
+    if(e.propertyName !== 'height') return;
+    if(btn.getAttribute('aria-expanded') === 'true') panel.style.height = 'auto';
+  });
+
+  btn.addEventListener('collapse', function(){ setOpen(false); });
+  btn.addEventListener('click', function(){
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    acc.querySelectorAll('.acc-head[aria-expanded="true"]').forEach(function(b){
+      if(b !== btn) b.dispatchEvent(new CustomEvent('collapse'));
+    });
+    setOpen(!isOpen);
+  });
+
+  if(gi === 0) setOpen(true);
+});
+
 </script>
 
 </body>
