@@ -460,6 +460,23 @@ nav{
   margin-bottom:22px;
   letter-spacing:-.02em;
 }
+
+.sub-h-row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:22px}
+.sub-h-row .sub-h{margin-bottom:0}
+.exp-more{
+  font-family:var(--serif);
+  font-size:1.02rem;
+  font-weight:600;
+  letter-spacing:-.01em;
+  color:var(--leaf);
+  white-space:nowrap;
+  line-height:1;
+  transition:opacity .2s;
+}
+
+.exp-more:hover{opacity:.68}
+.exp-more .arw{display:inline-block;transition:transform .25s var(--ease-snap)}
+.exp-more:hover .arw{transform:translateX(3px)}
 .entry{display:flex;gap:13px;padding:11px 0;border-bottom:1px solid var(--line-soft)}
 .entry:last-child{border-bottom:none}
 .entry .ico{flex:none;width:38px;height:38px;border-radius:8px;background:var(--panel-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--leaf);font-family:var(--mono);margin-top:2px;overflow:hidden;position:relative}
@@ -1360,7 +1377,10 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
       </div>
 
       <div>
-        <h2 class="sub-h">Experience</h2>
+        <div class="sub-h-row">
+           <h2 class="sub-h">Experience</h2>
+           <a class="exp-more" href="experience.html">Explore more <span class="arw">&rarr;</span></a>
+        </div>
         <div class="entry">
           <div class="ico"><img src="assets/logo/JCGC-logo.png" alt="Jinchuan Group" width="38" height="38" loading="lazy" decoding="async"></div>
           <div class="main"><div class="org">Jinchuan Group Co., Ltd.</div><div class="desc">Financial Analysis Intern</div></div>
