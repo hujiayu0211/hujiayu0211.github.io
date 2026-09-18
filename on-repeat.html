@@ -1256,6 +1256,11 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
 .or-meta b{color:var(--leaf);font-weight:500}
 .acc{border-top:1px solid var(--line)}
+.acc-block{margin-top:52px}
+.acc-block:first-child{margin-top:0}
+.acc-block-h{display:flex;align-items:baseline;gap:14px;padding-bottom:12px}
+.acc-block-h .n{font-family:var(--serif);font-size:1.06rem;font-weight:600;color:var(--leaf);line-height:1}
+.acc-block-h .l{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-soft)}
 .acc-item{border-bottom:1px solid var(--line)}
 .acc-head{width:100%;display:flex;align-items:center;gap:16px;padding:22px 4px;
   background:none;border:0;cursor:pointer;text-align:left;
@@ -1343,7 +1348,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   <div class="wrap">
     <div class="eyebrow rv"><span class="ln"></span>02 &middot; Live My Life</div>
     <h1 class="page-title rv">On Repeat<span class="dot">.</span></h1>
-    <p class="page-lead rv">What I have been listening to lately, grouped by language. Open a section and press play.</p>
+    <p class="page-lead rv">What I have been listening to lately — three tracks per artist, three per language. Open a section and press play.</p>
     <a class="back-link rv" href="live-my-life.html">&larr; Back to Live My Life</a>
   </div>
 </header>
@@ -1352,10 +1357,10 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 <section class="or-page">
   <div class="or-meta rv">
     <span><b id="trackCount">0</b> Tracks</span>
-    <span><b>5</b> Sections</span>
+    <span><b>9</b> Sections</span>
     <span>Played through Spotify</span>
   </div>
-  <div class="acc rv" id="acc"></div>
+  <div class="acc-wrap rv" id="acc"></div>
   <p class="or-foot rv">Updated September 2026</p>
 </section>
 </div>
@@ -1412,192 +1417,92 @@ function claim(ctrl){
 }
 function release(ctrl){ if(CURRENT === ctrl) CURRENT = null; }
 
-const GROUPS = [
+const BLOCKS = [
   {
-    "id": "jay",
-    "label": "周杰倫 · Jay Chou",
-    "tracks": [
-      {
-        "i": "3ZsPujeG0eWb4o3VkrHKd5",
-        "t": "妳聽得到",
-        "a": "Jay Chou"
-      },
-      {
-        "i": "57w29bSwdIZ6gr6xXOqwc1",
-        "t": "七里香",
-        "a": "Jay Chou"
-      },
-      {
-        "i": "1oLmDOpJtIMFdRFBXdnOvj",
-        "t": "夜曲",
-        "a": "Jay Chou"
-      },
-      {
-        "i": "0GvxoZAzrqS7bFEHFHsfd4",
-        "t": "髮如雪",
-        "a": "Jay Chou"
-      },
-      {
-        "i": "10VuSw48iPN2UK2xX9Y6P0",
-        "t": "青花瓷",
-        "a": "Jay Chou"
-      }
+    "block": "Artists",
+    "groups": [
+      { "id":"jay", "label":"Jay Chou", "tracks":[
+        { "i":"57w29bSwdIZ6gr6xXOqwc1", "t":"七里香",   "a":"Jay Chou" },
+        { "i":"1oLmDOpJtIMFdRFBXdnOvj", "t":"夜曲",     "a":"Jay Chou" },
+        { "i":"0GvxoZAzrqS7bFEHFHsfd4", "t":"髮如雪",   "a":"Jay Chou" }
+      ]},
+      { "id":"vae", "label":"Vae", "tracks":[
+        { "i":"03kwTe4rsyPowO0wiDYGrA", "t":"想像之中",   "a":"許嵩" },
+        { "i":"1TNw0nkGMuydC979VlPWBL", "t":"千百度",     "a":"許嵩" },
+        { "i":"1Oelbd16RrKfnMz7cNBy8X", "t":"彈指一揮間", "a":"許嵩" }
+      ]},
+      { "id":"houxian", "label":"Houxian", "tracks":[
+        { "i":"4Xb8915GUB49O76P0onfMr", "t":"西厢",       "a":"後弦" },
+        { "i":"4RXSFfXRMPAzjm2B51ZzUU", "t":"昆明湖",     "a":"後弦" },
+        { "i":"6kKOhjPklBXJa49zCDhmhY", "t":"下完這場雨", "a":"後弦" }
+      ]}
     ]
   },
   {
-    "id": "mandarin",
-    "label": "華語 · Mandarin",
-    "tracks": [
-      {
-        "i": "78E40DUsI511l4qx1ZALBx",
-        "t": "凍結",
-        "a": "JJ Lin"
-      },
-      {
-        "i": "0YgvF6fNWydNGzCY3pzK4Y",
-        "t": "江南",
-        "a": "JJ Lin"
-      },
-      {
-        "i": "4RXSFfXRMPAzjm2B51ZzUU",
-        "t": "昆明湖",
-        "a": "後弦"
-      },
-      {
-        "i": "740KtWw1r4f5Gd6UXzhYNp",
-        "t": "心跳",
-        "a": "Leehom Wang"
-      },
-      {
-        "i": "5oL7vOxCz2eJKAX6G4Yluh",
-        "t": "情歌",
-        "a": "Fish Leong"
-      },
-      {
-        "i": "5vC11Sc6kaWZwP79PQK9AA",
-        "t": "家书",
-        "a": "加木"
-      }
+    "block": "By Language",
+    "groups": [
+      { "id":"mandarin", "label":"Mandarin", "tracks":[
+        { "i":"5oL7vOxCz2eJKAX6G4Yluh", "t":"情歌", "a":"Fish Leong" },
+        { "i":"0YgvF6fNWydNGzCY3pzK4Y", "t":"江南", "a":"JJ Lin" },
+        { "i":"7k6tTpNIEXlaWYiYEgesSU", "t":"知了", "a":"陈默之" }
+      ]},
+      { "id":"cantonese", "label":"Cantonese", "tracks":[
+        { "i":"2lMVTk3I232dE7jnkufOSt", "t":"老派約會之必要", "a":"MC 張天賦" },
+        { "i":"0oE2ojWoZcNmGABQi8l1xk", "t":"處處吻",         "a":"Miriam Yeung" },
+        { "i":"1tUs2B1GUjM4Wr8VtSIzS0", "t":"問愛",           "a":"Yamy 郭穎" }
+      ]},
+      { "id":"english", "label":"English", "tracks":[
+        { "i":"7MXVkk9YMctZqd1Srtv4MB", "t":"Starboy",  "a":"The Weeknd, Daft Punk" },
+        { "i":"373gDROnujxNTFa1FojYIl", "t":"Lost",     "a":"Linkin Park" },
+        { "i":"6YUUQapDEqBF1yP3iHlsut", "t":"Insomnia", "a":"Craig David" }
+      ]},
+      { "id":"korean", "label":"Korean", "tracks":[
+        { "i":"2dCYxIY1IrPXn30EawLI7W", "t":"ROLY-POLY", "a":"T-ARA" },
+        { "i":"5XWlyfo0kZ8LF7VSyfS4Ew", "t":"Drama",     "a":"aespa" },
+        { "i":"3coRPMnFg2dJcPu5RMloa9", "t":"Whiplash",  "a":"aespa" }
+      ]},
+      { "id":"japanese", "label":"Japanese", "tracks":[
+        { "i":"2XpV9sHBexcNrz0Gyf3l18", "t":"ブルーバード", "a":"いきものがかり" },
+        { "i":"2cwvwUyyjjFsv55EywX9Zo", "t":"光るなら",     "a":"Goose house" },
+        { "i":"4IouQaO9GkaHC7AtMErdSa", "t":"打上花火",     "a":"DAOKO, 米津玄師" }
+      ]}
     ]
   },
   {
-    "id": "cantonese",
-    "label": "粵語 · Cantonese",
-    "tracks": [
-      {
-        "i": "2AllsVsmrJkEwXPXwDBCQu",
-        "t": "單車",
-        "a": "Eason Chan"
-      },
-      {
-        "i": "3hU9nGBhYJQwvF8BJ4PUcE",
-        "t": "囍帖街",
-        "a": "Kay Tse"
-      },
-      {
-        "i": "7pJH3YXNRUvq0ctKirL13A",
-        "t": "人非草木",
-        "a": "Kary Ng"
-      },
-      {
-        "i": "7JX2ClsnxN9GirkOezr01O",
-        "t": "喜歡你",
-        "a": "G.E.M."
-      },
-      {
-        "i": "2FsrKLHO91CaT8vvY85DD6",
-        "t": "月球下的人",
-        "a": "Gin Lee"
-      },
-      {
-        "i": "2lMVTk3I232dE7jnkufOSt",
-        "t": "老派約會之必要",
-        "a": "MC 張天賦"
-      }
-    ]
-  },
-  {
-    "id": "english",
-    "label": "English",
-    "tracks": [
-      {
-        "i": "2zsWRxMcUdGjj8TnWkVKw0",
-        "t": "Hypnotic",
-        "a": "Zella Day"
-      },
-      {
-        "i": "7MXVkk9YMctZqd1Srtv4MB",
-        "t": "Starboy",
-        "a": "The Weeknd, Daft Punk"
-      },
-      {
-        "i": "6koe981h6mmlJUfupqiLgL",
-        "t": "Washingtons by Your Side",
-        "a": "Wiz Khalifa"
-      },
-      {
-        "i": "7lAK3oHbfEnvUQWosrMMpR",
-        "t": "YOSEMITE",
-        "a": "Travis Scott"
-      },
-      {
-        "i": "2YpeDb67231RjR0MgVLzsG",
-        "t": "Old Town Road (feat. Billy Ray Cyrus) - Remix",
-        "a": "Lil Nas X, Billy Ray Cyrus"
-      },
-      {
-        "i": "5Z9KJZvQzH6PFmb8SNkxuk",
-        "t": "INDUSTRY BABY (feat. Jack Harlow)",
-        "a": "Lil Nas X, Jack Harlow"
-      }
-    ]
-  },
-  {
-    "id": "korean",
-    "label": "한국어 · Korean",
-    "tracks": [
-      {
-        "i": "2dCYxIY1IrPXn30EawLI7W",
-        "t": "ROLY-POLY",
-        "a": "T-ARA"
-      },
-      {
-        "i": "3Q6ny7MOETlpX1VE83CzZE",
-        "t": "DAY BY DAY",
-        "a": "T-ARA"
-      },
-      {
-        "i": "5XWlyfo0kZ8LF7VSyfS4Ew",
-        "t": "Drama",
-        "a": "aespa"
-      },
-      {
-        "i": "5EoV2HmAlkqN1XvsIjOBZZ",
-        "t": "STYLE",
-        "a": "Hearts2Hearts"
-      },
-      {
-        "i": "2bAQsNqdo62T8akkIvWzGl",
-        "t": "RUDE!",
-        "a": "Hearts2Hearts"
-      }
+    "block": "World Music",
+    "groups": [
+      { "id":"fengyasong", "label":"Feng-Ya-Song", "tracks":[
+        { "i":"5lngndQCfn8IaRZ34gRhs9", "t":"折柳",   "a":"關大洲" },
+        { "i":"3tC35VvCSocWgYSPL9D0Vi", "t":"少年遊", "a":"關大洲" },
+        { "i":"7hstC7Ca98A2xzzNnCn6Ab", "t":"江天曉", "a":"關大洲" }
+      ]}
     ]
   }
 ];
 
-const acc = document.getElementById('acc');
-document.getElementById('trackCount').textContent =
-  GROUPS.reduce(function(n,g){ return n + g.tracks.length; }, 0);
+const accWrap = document.getElementById('acc');
 
-GROUPS.forEach(function(g, gi){
+document.getElementById('trackCount').textContent =
+  BLOCKS.reduce(function(n,b){
+    return n + b.groups.reduce(function(m,g){ return m + g.tracks.length; }, 0);
+  }, 0);
+
+/* 折叠时只允许一个分组展开，范围是整页而不是单个区块 */
+function collapseOthers(current){
+  accWrap.querySelectorAll('.acc-head[aria-expanded="true"]').forEach(function(b){
+    if(b !== current) b.dispatchEvent(new CustomEvent('collapse'));
+  });
+}
+
+function buildGroup(g, mount, openByDefault){
   const item = document.createElement('section');
   item.className = 'acc-item';
   item.innerHTML =
-    '<h2 style="margin:0"><button class="acc-head" type="button" aria-expanded="false" aria-controls="panel-'+g.id+'">'
+    '<h3 style="margin:0"><button class="acc-head" type="button" aria-expanded="false" aria-controls="panel-'+g.id+'">'
     + '<span>'+g.label+'</span><span class="acc-count">'+g.tracks.length+'</span>'
-    + '<span class="acc-sign" aria-hidden="true"></span></button></h2>'
+    + '<span class="acc-sign" aria-hidden="true"></span></button></h3>'
     + '<div class="acc-panel" id="panel-'+g.id+'" role="region"><div class="acc-grid"></div></div>';
-  acc.appendChild(item);
+  mount.appendChild(item);
 
   const btn = item.querySelector('.acc-head');
   const panel = item.querySelector('.acc-panel');
@@ -1676,13 +1581,28 @@ GROUPS.forEach(function(g, gi){
   btn.addEventListener('collapse', function(){ setOpen(false); });
   btn.addEventListener('click', function(){
     const isOpen = btn.getAttribute('aria-expanded') === 'true';
-    acc.querySelectorAll('.acc-head[aria-expanded="true"]').forEach(function(b){
-      if(b !== btn) b.dispatchEvent(new CustomEvent('collapse'));
-    });
+    collapseOthers(btn);
     setOpen(!isOpen);
   });
 
-  if(gi === 0) setOpen(true);
+  if(openByDefault) setOpen(true);
+}
+
+let groupIndex = 0;
+BLOCKS.forEach(function(blk, bi){
+  const wrap = document.createElement('div');
+  wrap.className = 'acc-block';
+  wrap.innerHTML =
+    '<h2 class="acc-block-h"><span class="n">0'+(bi+1)+'</span><span class="l">'+blk.block+'</span></h2>';
+  const acc = document.createElement('div');
+  acc.className = 'acc';
+  wrap.appendChild(acc);
+  accWrap.appendChild(wrap);
+
+  blk.groups.forEach(function(g){
+    buildGroup(g, acc, groupIndex === 0);
+    groupIndex++;
+  });
 });
 
 </script>
