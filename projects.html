@@ -1410,14 +1410,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
       <span class="card-badge st-active"><span class="st-dot"></span>Active</span>
     </div>
     <h2 class="teaser-title">Reproducible Diagnostics &amp; Benchmark Design for ESG Disclosure Assessment</h2>
-    <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
-    <p class="teaser-body">
-      Work in progress on the evaluation layer that ESG disclosure systems currently lack. The project improves the experiment-relevant parts of an existing disclosure database, builds an independently annotated benchmark on top of it, and develops diagnostics that test whether a reported score reflects genuine assessment quality or an artefact of how the reference labels were produced. This is joint work with <a class="link" href="https://github.com/Mirandababy07" target="_blank" rel="noopener">Zherui Wang</a> (UNSW CSE), who developed the underlying corpus.
-    </p>
-    <p class="teaser-body">
-      Two directions follow from this foundation. The first is methodological and forms the basis of our current paper: whether language-model judgements of disclosure can be trusted as measurement, not only item by item but once they are aggregated into the scores and rankings built on them. The second is empirical, treating the verified criterion-level measures as research data in order to study how disclosure quality varies across firms, standards and markets, and what that variation is associated with.
-    </p>
-    </details>
+    <p class="teaser-body">Builds diagnostics and an independently annotated benchmark to test whether language-model judgements of ESG disclosure can be trusted as measurement.</p>
     <div class="teaser-tags">
       <span class="teaser-tag">Benchmark Design</span>
       <span class="teaser-tag">Annotation Protocol</span>
@@ -1434,10 +1427,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
       <span class="card-badge st-active"><span class="st-dot"></span>Active</span>
     </div>
     <h2 class="teaser-title">Carbon Chain</h2>
-    <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
-      <p class="teaser-body">
-     A team entry for the China International College Students&rsquo; Innovation Competition 2027, built on the EulerESG platform. The system represents ESG entities, claim-evidence relations, provenance and time in a four-layer graph, and scores how far a disclosure claim is actually supported by traceable evidence, counting independent sources rather than repeated documents. A pilot corpus of 48 sustainability and annual reports from 10 A-share and H-share issuers (2021&ndash;2025) supports early testing, with planned extension to Chinese disclosure rules.
-    </details>
+    <p class="teaser-body">A competition team project that extends EulerESG to Chinese disclosure rules, using a knowledge graph to test whether ESG claims are backed by traceable, independent evidence.</p>
     <div class="teaser-tags">
       <span class="teaser-tag">Knowledge Graph</span>
       <span class="teaser-tag">Evidence Traceability</span>
@@ -1453,11 +1443,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
       <span class="card-badge st-done"><span class="st-dot"></span>Completed</span>
     </div>
     <h2 class="teaser-title"><a href="https://github.com/hujiayu0211/esg-credit-risk-xai" target="_blank" rel="noopener">ESG-Augmented Corporate Credit Risk Prediction &amp; Explainability</a></h2>
-    <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
-     <p class="teaser-body">
-      An end-to-end machine-learning pipeline that predicts corporate credit risk for Chinese A-share firms from 18 firm-level features (financial ratios, market signals, and ESG scores) and explains the model through a four-layer SHAP analysis, built on a 42,108 firm-year panel (5,423 firms, 2015&ndash;2025). The target is the Merton/KMV distance-to-default rather than an accounting Z-score, which leaves room to test, by firm-grouped ablation, whether ESG carries incremental information about credit risk. Test R&sup2; reaches 0.683, and next-year distress classification reaches ROC-AUC 0.923.
-    </p>
-    </details>
+    <p class="teaser-body">Predicts the credit risk of Chinese A-share firms from financial, market and ESG features, and uses SHAP to explain what drives each prediction.</p>
     <div class="teaser-tags">
       <span class="teaser-tag">XGBoost</span>
       <span class="teaser-tag">SHAP</span>
@@ -1474,11 +1460,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
       <span class="card-badge st-done"><span class="st-dot"></span>Completed</span>
     </div>
     <h2 class="teaser-title"><a href="https://github.com/hujiayu0211/Multi-Factor-Quant-Stock-Selection" target="_blank" rel="noopener">Multi-Factor Quantitative Stock Selection &amp; Backtesting</a></h2>
-    <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
-      <p class="teaser-body">
-      An end-to-end multi-factor stock-selection and backtesting pipeline that scores the equity cross-section from eight factors (value, quality, momentum, liquidity, size, and three risk factors), combines them two ways (an IC-weighted linear composite and a LightGBM walk-forward model), and evaluates everything with rank-IC, ICIR, factor decay, and a monthly-rebalanced quantile backtest against a market benchmark. It runs on a China A-share panel of 498,893 stock-months across 5,546 firms (2015&ndash;2025, delisted firms included), with strict point-in-time discipline so no factor uses data the market had not yet seen.
-    </p>
-    </details>
+    <p class="teaser-body">Builds and backtests a multi-factor stock-selection model for China A-shares, combining eight factors through IC weighting and a walk-forward LightGBM model.</p>
     <div class="teaser-tags">
       <span class="teaser-tag">Multi-Factor</span>
       <span class="teaser-tag">LightGBM</span>
@@ -1502,11 +1484,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
       <span class="card-badge st-done"><span class="st-dot"></span>Completed</span>
     </div>
     <h2 class="teaser-title"><a href="https://github.com/hujiayu0211/Chinese-White-Dolphin-Conservation-Analytics" target="_blank" rel="noopener">Chinese White Dolphin Habitat Loss &amp; Conservation</a></h2>
-    <details class="pdrop"><summary>Overview <span class="pchev"></span></summary>
-      <p class="teaser-body">
-      A reproducible conservation-analytics study of how Chinese White Dolphin occurrence and core habitat changed across 2012&ndash;2022 in the western waters of Hong Kong, and how that change aligns with large-scale reclamation for the Hong Kong&ndash;Zhuhai&ndash;Macau Bridge and the airport's Three-Runway System. It turns AFCD marine-mammal monitoring and EPD water-quality archives into a single model-ready panel, then runs an effort-controlled trend model, water-quality diagnostics, and spatial habitat-shift maps. After controlling for survey effort, the on-effort sighting rate fell about 12.4% per year, while the 50% core-use area contracted from 45 to 26&nbsp;km&sup2; and shifted southwest, away from the reclamation front.
-    </p>
-    </details>
+    <p class="teaser-body">Analyses how Chinese White Dolphin habitat in the western waters of Hong Kong changed from 2012 to 2022, alongside large-scale coastal reclamation.</p>
     <div class="teaser-tags">
       <span class="teaser-tag">Spatial Analysis</span>
       <span class="teaser-tag">Trend Modelling</span>
