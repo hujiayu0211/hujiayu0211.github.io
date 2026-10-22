@@ -541,7 +541,7 @@ a:hover .arw{transform:translateX(3px)}
   }
 }
 
-/* ============ RESEARCH IDENTITY NETWORK ============ */
+/* ============ RESEARCH IDENTITY ============ */
 .skills-title{
   margin-bottom:16px;
 }
@@ -552,204 +552,76 @@ a:hover .arw{transform:translateX(3px)}
   font-size:1.04rem;
   margin-bottom:26px;
 }
-
-.identity-map{
-  position:relative;
-  width:100%;
-  min-height:440px;
-  border:1px solid var(--line-soft);
-  border-radius:18px;
-  background:
-    radial-gradient(circle at 50% 45%, rgba(47,93,67,.08), transparent 36%),
-    linear-gradient(180deg, rgba(244,240,230,.78), rgba(255,255,255,.58));
-  overflow:hidden;
-}
-
-#identityGraph{
-  width:100%;
-  height:440px;
-  display:block;
-}
-
-.identity-hint{
-  position:absolute;
-  left:24px;
-  top:20px;
-  z-index:2;
-  font-family:var(--mono);
-  font-size:11px;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--text-faint);
-  pointer-events:none;
-}
-
-.identity-tooltip{
-  position:absolute;
-  z-index:5;
-  max-width:320px;
-  padding:12px 14px;
-  border-radius:12px;
-  background:rgba(255,255,255,.96);
-  border:1px solid var(--line);
-  box-shadow:var(--shadow);
-  color:var(--text-soft);
-  font-size:13.5px;
-  line-height:1.55;
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(8px) scale(.98);
-  transition:
-    opacity .22s var(--ease-soft),
-    transform .22s var(--ease-soft),
-    visibility .22s;
-  pointer-events:none;
-}
-
-.identity-tooltip.show{
-  opacity:1;
-  visibility:visible;
-  transform:translateY(0) scale(1);
-}
-
-.identity-tooltip strong{
-  display:block;
-  color:var(--text);
-  margin-bottom:4px;
-}
-
-.identity-fallback{
-  display:none;
-}
-
-.identity-map.no-d3{
-  min-height:auto;
-  padding:28px;
-}
-
-.identity-map.no-d3 #identityGraph,
-.identity-map.no-d3 .identity-tooltip{
-  display:none;
-}
-
-.identity-map.no-d3 .identity-hint{
-  position:static;
-  display:block;
-  margin-bottom:18px;
-  max-width:none;
-  pointer-events:auto;
-}
-
-.identity-map.no-d3 .identity-fallback{
+.ri-map{
   display:grid;
-  gap:12px;
-  color:var(--text-soft);
-  font-size:.98rem;
-  line-height:1.55;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:34px;
+  align-items:center;
+  margin:4px 0 28px;
+}
+.ri-venn svg{width:100%;height:auto;display:block}
+.ri-c{stroke-width:1.5;mix-blend-mode:multiply}
+.ri-acc{fill:rgba(47,93,67,.10);stroke:var(--leaf)}
+.ri-fin{fill:rgba(168,110,50,.10);stroke:var(--clay)}
+.ri-cs{fill:rgba(63,90,115,.10);stroke:#3F5A73}
+.ri-venn text{text-anchor:middle}
+.ri-name{font-family:var(--serif);font-size:23px;font-weight:600}
+.ri-acc-t{fill:var(--leaf)}
+.ri-fin-t{fill:var(--clay)}
+.ri-cs-t{fill:#3F5A73}
+.ri-int{font-family:var(--sans);font-size:13.5px;fill:var(--text-soft)}
+.ri-core{font-family:var(--serif);font-style:italic;font-size:18px;font-weight:500;fill:var(--text)}
+
+.ri-dot{display:inline-block;width:9px;height:9px;border-radius:50%;flex:none}
+.ri-acc-d{background:var(--leaf)}
+.ri-fin-d{background:var(--clay)}
+.ri-cs-d{background:#3F5A73}
+
+.ri-pair{padding:18px 0;border-bottom:1px solid var(--line-soft)}
+.ri-pair:first-child{padding-top:0}
+.ri-pair:last-child{border-bottom:none;padding-bottom:0}
+.ri-pair-h{
+  display:flex;align-items:center;gap:5px;
+  font-family:var(--serif);font-size:1.2rem;font-weight:600;font-style:italic;
+  color:var(--text);margin-bottom:10px;
+}
+.ri-pair-h .ri-dot:last-of-type{margin-right:8px}
+.ri-pair-h--sm{
+  font-family:var(--mono);font-style:normal;font-weight:400;
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);
+}
+.ri-pair ul{list-style:none;display:grid;gap:7px}
+.ri-pair li{color:var(--text-soft);font-size:.98rem;line-height:1.5}
+.ri-pair ul:not(.ri-pairs) li{position:relative;padding-left:16px}
+.ri-pair ul:not(.ri-pairs) li::before{
+  content:"";position:absolute;left:2px;top:.72em;width:6px;height:1px;background:var(--text-faint);
+}
+.ri-pairs li{display:flex;align-items:flex-start;gap:4px}
+.ri-pairs li .ri-dot{margin-top:.5em}
+.ri-pairs li .ri-dot:nth-child(2){margin-right:10px}
+
+.ri-kit{border-top:1px solid var(--line-soft);padding-top:18px;display:grid;gap:12px}
+.ri-kit-row{display:flex;align-items:center;gap:16px}
+.ri-shared-k{
+  flex:none;width:96px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);
+}
+.ri-tags{display:flex;flex-wrap:wrap;gap:7px}
+.ri-tags span{
+  font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--text-soft);background:var(--panel);border:1px solid var(--line);
+  border-radius:999px;padding:5px 11px;
 }
 
-.identity-map.no-d3 .identity-fallback strong{
-  color:var(--text);
+@media(max-width:900px){
+  .ri-map{grid-template-columns:1fr;gap:24px}
 }
-
-.identity-link{
-  stroke:rgba(47,93,67,.32);
-  stroke-width:1.4;
-  fill:none;
-  pointer-events:none;
-}
-
-.identity-link.category-link{
-  stroke:rgba(168,110,50,.34);
-}
-
-.identity-node{
-  cursor:pointer;
-}
-
-.identity-node circle{
-  stroke:var(--leaf);
-  stroke-width:1.6;
-  fill:rgba(255,255,255,.78);
-  transition:
-    stroke-width .22s var(--ease-soft),
-    fill .22s var(--ease-soft);
-}
-
-.identity-node.root circle{
-  stroke-width:2;
-  fill:rgba(47,93,67,.10);
-}
-
-.identity-node.domain circle{
-  fill:rgba(47,93,67,.07);
-}
-
-.identity-node.category circle{
-  stroke:var(--clay);
-  fill:rgba(168,110,50,.06);
-}
-
-.identity-node:hover circle{
-  stroke-width:2.4;
-  fill:rgba(255,255,255,.94);
-}
-
-.identity-node text{
-  font-family:var(--sans);
-  font-weight:700;
-  fill:var(--text);
-  pointer-events:none;
-  text-anchor:middle;
-  dominant-baseline:middle;
-}
-
-.identity-node.root text{
-  font-family:var(--serif);
-  font-size:18px;
-  font-weight:600;
-}
-
-.identity-node.domain text{
-  font-size:12.5px;
-  letter-spacing:-.01em;
-}
-
-.identity-node.category text{
-  font-size:12px;
-  letter-spacing:-.015em;
-}
-
-.identity-node tspan{
-  text-anchor:middle;
-}
-
 @media(max-width:760px){
-  .identity-map{
-    min-height:500px;
-  }
-
-  #identityGraph{
-    height:500px;
-  }
-
-  .identity-hint{
-    left:18px;
-    top:16px;
-    max-width:260px;
-  }
-
-  .identity-node.root text{
-    font-size:15.5px;
-  }
-
-  .identity-node.domain text{
-    font-size:11px;
-  }
-
-  .identity-node.category text{
-    font-size:9.4px;
-  }
+  .ri-venn{margin:0 -8px}
+  .ri-int{font-size:16.5px}
+  .ri-name{font-size:26px}
+  .ri-core{font-size:19px}
+  .ri-kit-row{flex-direction:column;align-items:flex-start;gap:8px}
 }
 
 /* ============ NEWS ============ */
@@ -1168,16 +1040,6 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 </style>
 <noscript><style>.rv{opacity:1;transform:none}</style></noscript>
-<!-- Load only the D3 submodules used by the Research Identity force graph. -->
-<script defer src="https://cdn.jsdelivr.net/npm/d3-selection@3"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/d3-dispatch@3"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/d3-quadtree@3"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/d3-timer@3"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/d3-color@3"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/d3-interpolate@3"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/d3-ease@3"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/d3-transition@3"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/d3-force@3"></script>
 
 <style id="hw-home-style">
 #helloworld .hw-home{display:grid;grid-template-columns:1fr .92fr;gap:40px;align-items:center}
@@ -1449,20 +1311,56 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
     <h2 class="sub-h skills-title">Research Identity</h2>
 
     <p class="identity-lede">
-      A map of how my training fits together — accounting and business analytics on one side, computer science on the other, meeting in evidence-grounded methods for assessing corporate sustainability disclosure.
+      Three disciplines, one question: when can AI be trusted to read financial reporting? My research sits where accounting, finance and computer science overlap.
     </p>
 
-    <div class="identity-map" id="researchIdentityMap">
-      <div class="identity-hint">Hover or tap the center node to expand the research network.</div>
-      <svg id="identityGraph" role="img" aria-label="Research identity network graph"></svg>
+    <div class="ri-map">
+      <div class="ri-venn">
+        <svg viewBox="30 22 540 512" role="img" aria-label="Research interests across accounting, finance and computer science">
+          <circle class="ri-c ri-acc" cx="210" cy="200" r="165"/>
+          <circle class="ri-c ri-fin" cx="390" cy="200" r="165"/>
+          <circle class="ri-c ri-cs"  cx="300" cy="356" r="165"/>
 
-      <div class="identity-tooltip" id="identityTooltip"></div>
+          <text class="ri-name ri-acc-t" x="141" y="170">Accounting</text>
+          <text class="ri-name ri-fin-t" x="459" y="170">Finance</text>
+          <text class="ri-name ri-cs-t" x="300" y="440">Computer Science</text>
 
-      <div class="identity-fallback">
-        <div><strong>Programming &amp; Research Software:</strong> Python · R · SQL · Stata · MATLAB · Git · pytest · deterministic seeding · provenance tracking</div>
-        <div><strong>Econometrics &amp; Empirical Research:</strong> Panel fixed effects · IV / 2SLS · System GMM · Bootstrap inference · Robustness tests</div>
-        <div><strong>AI, Knowledge &amp; Evaluation:</strong> RDF/OWL · SHACL · PROV-O · Knowledge graphs · RAG · LLM-as-judge evaluation · PyTorch · XGBoost · SHAP</div>
-        <div><strong>Financial &amp; Disclosure Data:</strong> WRDS · CSMAR · Wind · Bloomberg · SSE/SZSE/HKEX filings · sustainability reports</div>
+          <text class="ri-int" x="300" y="136"><tspan x="300">ESG</tspan><tspan x="300" dy="17">ratings</tspan></text>
+          <text class="ri-int" x="201" y="304"><tspan x="201">Financial</tspan><tspan x="201" dy="17">text</tspan></text>
+          <text class="ri-int" x="399" y="304"><tspan x="399">Financial</tspan><tspan x="399" dy="17">networks</tspan></text>
+
+          <text class="ri-core" x="300" y="245"><tspan x="300">AI in accounting</tspan><tspan x="300" dy="21">&amp; finance</tspan></text>
+        </svg>
+      </div>
+
+      <div class="ri-meet">
+        <div class="ri-pair">
+          <h3 class="ri-pair-h"><span class="ri-dot ri-acc-d"></span><span class="ri-dot ri-fin-d"></span><span class="ri-dot ri-cs-d"></span>AI in accounting &amp; finance</h3>
+          <ul>
+            <li>Large language models in financial statement analysis</li>
+            <li>Validity of LLM-generated measures in accounting and finance research</li>
+            <li>Generative AI and the corporate information environment</li>
+          </ul>
+        </div>
+        <div class="ri-pair">
+          <h3 class="ri-pair-h ri-pair-h--sm">Where two fields meet</h3>
+          <ul class="ri-pairs">
+            <li><span class="ri-dot ri-acc-d"></span><span class="ri-dot ri-fin-d"></span>ESG rating disagreement and measurement</li>
+            <li><span class="ri-dot ri-acc-d"></span><span class="ri-dot ri-cs-d"></span>Textual analysis of financial reports</li>
+            <li><span class="ri-dot ri-fin-d"></span><span class="ri-dot ri-cs-d"></span>Graph learning for financial networks and contagion</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ri-kit">
+      <div class="ri-kit-row">
+        <span class="ri-shared-k">Methods</span>
+        <div class="ri-tags"><span>Panel econometrics</span><span>Causal inference</span><span>Machine learning</span><span>Explainable AI</span><span>NLP</span><span>LLM evaluation</span><span>RAG</span><span>Knowledge graphs</span></div>
+      </div>
+      <div class="ri-kit-row">
+        <span class="ri-shared-k">Tools</span>
+        <div class="ri-tags"><span>Python</span><span>R</span><span>SQL</span><span>Stata</span><span>PyTorch</span><span>LangChain</span><span>FastAPI</span></div>
       </div>
     </div>
   </section>
