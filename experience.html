@@ -682,26 +682,66 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
     <article class="tl-item rv">
       <div class="tl-when">
         Sep. 2026 – Present
-        <span class="tl-place">Sydney, NSW, Australia · Remote</span>
+        <span class="tl-place">Sydney, NSW, Australia</span>
       </div>
       <div class="tl-body">
         <h2 class="tl-role">Research Assistant</h2>
         <div class="tl-org">
           <span class="en">Vecton AI Pty Ltd</span>
+          <span>Supervised by Bocheng Han</span>
         </div>
 
         <ul class="tl-list">
-          <li>Working on retrieval-augmented generation and LLM agent development, progressing from baseline to advanced RAG (query rewriting, hybrid BM25 and vector retrieval, reranking, RAG evaluation) and on to tool calling, agent memory and multi-agent workflows, using FastAPI, LangChain and vector databases.</li>
-          <li>Strengthening the model-level foundations behind this work, from tokenization, Transformer architecture and training systems to post-training, alongside hands-on study of attention and sampling in GPT-2.</li>
+          <li>Implemented an adaptive GraphRAG prototype for multi-hop question answering that scales retrieval effort to the evidence available, starting with entity-centred local expansion and escalating to multi-hop bridge discovery or a broader graph search only when needed.</li>
+          <li>Added provenance recovery to map retrieved entities and relations back to their source passages, keeping numerical and temporal details lost during graph construction, and built answer verification with failure-aware query rewriting and bounded retries, evaluated on Recall@K, token use and latency.</li>
+          <li>Designed reproducible benchmarks comparing relational, NoSQL, graph, vector and hybrid databases on ingestion, query time, storage and cost in local and cloud environments, and combined graph traversal with vector search to study structural versus semantic retrieval, using Apache Spark for larger workloads.</li>
+          <li>Followed Stanford CS336 (Language Modeling from Scratch) across the full pipeline, from tokenisation and Transformer internals to training, evaluation and decoding with temperature, top-k and top-p sampling, running small training experiments to connect theory with model behaviour.</li>
+          <li>Investigated how memorised training data can inflate evaluation results, using controlled comparisons of original and de-identified inputs and targeted memory probes to separate genuine reasoning from recall of pretraining data.</li>
+          <li>Built domain-specific question-answering prototypes that combine knowledge graphs with source-document retrieval, and agents that select tools and query databases through structured schemas, retries and fallbacks, comparing their answers with general-purpose models on evidence coverage, specificity and traceability.</li>
+          <li>Split retrieval, reasoning, tool execution and generation into modular services, containerised them with Docker and deployed them to the cloud with custom domains, profiling latency, throughput, token use and failure rate, and cutting repeated computation through caching and pipelined execution.</li>
         </ul>
 
         <div class="tl-tags">
+          <span class="tag">Python</span>
+          <span class="tag">PyTorch</span>
+          <span class="tag">Transformer Models</span>
+          <span class="tag">NLP</span>
+          <span class="tag">LLMs</span>
           <span class="tag">RAG</span>
           <span class="tag">AI Agents</span>
-          <span class="tag">LLMs</span>
+          <span class="tag">Knowledge Graphs</span>
+          <span class="tag">Vector Databases</span>
           <span class="tag">LangChain</span>
           <span class="tag">FastAPI</span>
-          <span class="tag">Transformers</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Apache Spark</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- Vecton AI · Business Analyst ---------- -->
+    <article class="tl-item rv">
+      <div class="tl-when">
+        Sep. 2026
+        <span class="tl-place">Sydney, NSW, Australia</span>
+      </div>
+      <div class="tl-body">
+        <h2 class="tl-role">Business Analyst</h2>
+        <div class="tl-org">
+          <span class="en">Vecton AI Pty Ltd</span>
+        </div>
+
+        <ul class="tl-list">
+          <li>Prepared consolidated financial statements under IFRS for the Sydney-based parent company and its subsidiary in China, including the elimination of intercompany balances and transactions and the translation of the subsidiary&rsquo;s RMB-denominated statements.</li>
+          <li>Built a five-year financial forecast and funding analysis, which also supported the company&rsquo;s entry in the China International College Students&rsquo; Innovation Competition 2026.</li>
+        </ul>
+
+        <div class="tl-tags">
+          <span class="tag">Consolidated Financial Statements</span>
+          <span class="tag">IFRS</span>
+          <span class="tag">Foreign Currency Translation</span>
+          <span class="tag">Financial Forecasting</span>
+          <span class="tag">Funding Analysis</span>
         </div>
       </div>
     </article>
@@ -710,27 +750,27 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
     <article class="tl-item rv">
       <div class="tl-when">
         May 2026 – Present
-        <span class="tl-place">Sydney, NSW, Australia · Remote</span>
+        <span class="tl-place">Sydney, NSW, Australia</span>
       </div>
       <div class="tl-body">
         <h2 class="tl-role">Student Researcher</h2>
         <div class="tl-org">
           <span class="en">University of Sydney</span>
-          <span>RAIDS Lab · Supervised by Dr Zhengyi Yang</span>
+          <span><a class="link" href="https://raids-lab.com/" target="_blank" rel="noopener">RAIDS Lab</a> · Supervised by Dr. <a class="link" href="http://www.zhengyi.one/" target="_blank" rel="noopener">Zhengyi Yang</a></span>
         </div>
 
         <ul class="tl-list">
-          <li>Extended Zherui Wang&rsquo;s ESG extraction and scoring pipeline with reproducible Python diagnostics, comparing model outputs with human-corrected annotations across <strong>53 reports from 37 Australian-listed companies</strong>.</li>
-          <li>Analysed item-level agreement and error patterns, examining how extraction discrepancies propagate into report-level scores and rankings across <strong>AASB S1/S2, GRI and SASB</strong>.</li>
-          <li>Developed a blind-annotation protocol and supporting scripts for annotator calibration, agreement assessment and adjudication, including <strong>300 items</strong> assigned to two independent annotators.</li>
-          <li>Reviewed EulerESG&rsquo;s end-to-end workflow and proposed technical improvements, alongside contributions to manuscript revision (<strong>IEEE ICDM 2026 Demo Track, accepted</strong>).</li>
-          <li>Developing a research proposal on ontology-guided ESG assessment, focusing on evidence grounding and potential cross-dimension biases in LLM-generated evaluations.</li>
+          <li>Study whether LLM-generated ESG disclosure scores can be trusted as measurement, tracing how item-level errors carry into company scores and rankings, and building a reproducible analysis pipeline and a human-annotated benchmark to test them.</li>
+          <li>Co-authored <em>EulerESG: A Unified Platform for Standards-Aware ESG Disclosure Analysis</em>, accepted to the <strong>IEEE ICDM 2026 Demo Track</strong>, contributing to experiments, system review and manuscript revision.</li>
+          <li>Research ontology-guided ESG assessment, encoding reporting requirements as machine-checkable evidence conditions to study evidence grounding and cross-dimension bias in LLM-generated evaluations.</li>
+          <li>Analyse divergence across ESG ratings, with a focus on the rater effect, where a rater&rsquo;s overall view of a firm spills into its scores on individual categories, and plan to bring this lens back to my BBA Final Year Project on ESG disclosure and corporate investment efficiency.</li>
+          <li>Lead the Carbon Chain team in extending EulerESG to Chinese disclosure requirements, using a knowledge graph that links claims, evidence and provenance, with the corpus now expanded to 100 reports from 20 listed companies.</li>
         </ul>
 
         <div class="tl-stats">
-          <div class="stat"><div class="stat-n">53</div><div class="stat-k">disclosure reports benchmarked</div></div>
-          <div class="stat"><div class="stat-n">37</div><div class="stat-k">Australian-listed companies</div></div>
-          <div class="stat"><div class="stat-n">300</div><div class="stat-k">items double-annotated</div></div>
+          <div class="stat"><div class="stat-n">26,654</div><div class="stat-k">item-level model judgements traced</div></div>
+          <div class="stat"><div class="stat-n">53</div><div class="stat-k">reports from 37 ASX-listed companies</div></div>
+          <div class="stat"><div class="stat-n">200</div><div class="stat-k">items double-annotated</div></div>
         </div>
 
         <div class="tl-tags">
@@ -739,9 +779,93 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
           <span class="tag">RAG</span>
           <span class="tag">Information Retrieval</span>
           <span class="tag">Knowledge Graphs</span>
+          <span class="tag">ESG Ratings</span>
         </div>
       </div>
-     </article>
+    </article>
+
+    <!-- ---------- HSBC ---------- -->
+    <article class="tl-item rv">
+      <div class="tl-when">
+        Sep. 2025 – Dec. 2025
+        <span class="tl-place">Guangzhou, Guangdong, China</span>
+      </div>
+      <div class="tl-body">
+        <h2 class="tl-role">Investment Banking Intern</h2>
+        <div class="tl-org">
+          <span class="en">HSBC Global Service Centre (China)</span>
+          <span>Global Banking · Investment Banking</span>
+        </div>
+
+        <ul class="tl-list">
+          <li>Supported global coverage teams in preparing company profiles, trading comparables and market updates for pitch books on Hong Kong IPO and M&amp;A opportunities.</li>
+          <li>Assisted with comparable company analysis across four research projects, collecting financial and valuation data on more than 10 listed peers per project from Wind and Bloomberg, and cross-checking figures and multiples against annual reports, filings and prospectuses.</li>
+          <li>Helped analysts update DCF assumptions and sensitivity tables for preliminary M&amp;A and financing discussions.</li>
+          <li>Researched A+H dual listings, Hong Kong&rsquo;s Chapter 18C regime for specialist technology companies, and green and sustainability-linked lending in the Greater Bay Area, summarising findings for internal pitch preparation.</li>
+          <li>Drafted weekly capital markets newsletters covering the Hong Kong IPO pipeline and major market developments.</li>
+        </ul>
+
+        <div class="tl-stats">
+          <div class="stat"><div class="stat-n">4</div><div class="stat-k">comparable-company projects</div></div>
+          <div class="stat"><div class="stat-n">10+</div><div class="stat-k">listed peers per project</div></div>
+          <div class="stat"><div class="stat-n">3</div><div class="stat-k">market research themes</div></div>
+        </div>
+
+        <div class="tl-tags">
+          <span class="tag">Comparable Company Analysis</span>
+          <span class="tag">DCF</span>
+          <span class="tag">Financial Statement Analysis</span>
+          <span class="tag">Equity Capital Markets</span>
+          <span class="tag">M&amp;A</span>
+          <span class="tag">Hong Kong IPOs</span>
+          <span class="tag">Pitch Books</span>
+          <span class="tag">Market Research</span>
+          <span class="tag">Bloomberg</span>
+          <span class="tag">Wind</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- CICC ---------- -->
+    <article class="tl-item rv">
+      <div class="tl-when">
+        Jun. 2025 – Sep. 2025
+        <span class="tl-place">Shanghai, China</span>
+      </div>
+      <div class="tl-body">
+        <h2 class="tl-role">Financial Engineering Intern</h2>
+        <div class="tl-org">
+          <span class="en">China International Capital Corporation (CICC)</span>
+          <span>Research Department · Financial Engineering</span>
+        </div>
+
+        <ul class="tl-list">
+          <li>Used Python and Wind to collect, clean and organise fund and market data, helping maintain internal datasets on fund holdings, flows and performance.</li>
+          <li>Processed Q2 2025 mutual fund quarterly reports, compiling statistics on sector allocation, changes in holdings and ETF flows for the team&rsquo;s quarterly fund review.</li>
+          <li>Assisted with weekly monitoring of ETF and mutual fund activity, including Q2 2025 inflows into broad-based CSI 300 and SSE 50 ETFs.</li>
+          <li>Backtested existing size, growth and value style signals under analyst guidance, and updated the related performance and attribution tables.</li>
+          <li>Reviewed and summarised more than 10 academic papers on machine learning and alternative data in return prediction, focusing on LLM-based text signals and factor timing, and prepared research notes for analysts&rsquo; internal reference.</li>
+        </ul>
+
+        <div class="tl-stats">
+          <div class="stat"><div class="stat-n">3</div><div class="stat-k">style signals backtested</div></div>
+          <div class="stat"><div class="stat-n">10+</div><div class="stat-k">academic papers reviewed</div></div>
+          <div class="stat"><div class="stat-n">Weekly</div><div class="stat-k">ETF &amp; fund flow monitoring</div></div>
+        </div>
+
+        <div class="tl-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Wind</span>
+          <span class="tag">Fund Analysis</span>
+          <span class="tag">ETF Research</span>
+          <span class="tag">Data Cleaning</span>
+          <span class="tag">Factor Backtesting</span>
+          <span class="tag">Performance Attribution</span>
+          <span class="tag">Quantitative Analysis</span>
+          <span class="tag">Academic Literature Review</span>
+        </div>
+      </div>
+    </article>
 
     <!-- ---------- Jinchuan ---------- -->
     <article class="tl-item rv">
@@ -756,10 +880,10 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
         </div>
 
         <ul class="tl-list">
-          <li>Contributed drafting and analysis to <strong>board-level meeting materials</strong>, covering a cross-border joint-venture proposal and a restructuring investment proposal for a copper smelting company — a first encounter with offshore holding structures and with how joint ventures and M&amp;A restructurings are actually assembled.</li>
-          <li>Worked through the smelter proposal in detail: process flows and cost accounting in smelting, settlement conventions for base and precious metals, identification of related-party transactions, and the statement preparation that follows from them.</li>
-          <li>Cleaned, matched and consolidated tendering, supplier-quotation, inventory, fixed-asset depreciation and project-cost data in <strong>Python (pandas, NumPy)</strong>; ran budget-versus-actual variance analysis to isolate the main deviations and traced anomalous movements in procurement prices, material consumption and inventory.</li>
-          <li>Automated the recurring cleaning, aggregation, reconciliation and depreciation calculations, and maintained a project data ledger that standardised, matched and cross-verified records drawn from different business documents.</li>
+          <li>Contributed drafting and analysis to <strong>board-level materials</strong> for a cross-border joint-venture proposal and a restructuring investment proposal for a copper smelting subsidiary, during the Group&rsquo;s 2024 segment-wide asset restructuring, and mapped multi-tier offshore holding structures through Hong Kong and Cayman platforms.</li>
+          <li>Analysed the smelter proposal in depth, covering pyrometallurgical and electrolytic refining process flows, smelting cost accounting, TC/RC and payable-metal settlement terms for copper and precious metals, and the identification of related-party transactions and their treatment in statement preparation.</li>
+          <li>Cleaned, matched and consolidated tendering, supplier-quotation, inventory, fixed-asset depreciation and project-cost data in <strong>Python (pandas, NumPy)</strong>; ran budget-versus-actual variance analysis to isolate key deviations and traced anomalous movements in procurement prices, material consumption and inventory.</li>
+          <li>Automated recurring cleaning, aggregation, reconciliation and depreciation calculations, and maintained a project data ledger that standardised and cross-verified records from multiple business documents.</li>
         </ul>
 
         <div class="tl-stats">
@@ -768,19 +892,56 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
           <div class="stat"><div class="stat-n">~70%</div><div class="stat-k">less data-processing time</div></div>
         </div>
 
-        <div class="tl-note">
-          <span class="n-key">What it taught me</span>
-          <p>Jinchuan was where I stopped treating financial analysis as something that happens on the statements. Whether it was a group-level acquisition or a project-level cost variance, the judgment that mattered came from reading the transaction structure, the business process and the numbers together — Python made the data tractable, but tracing an anomalous figure back to a specific operational mechanism was the hard part.</p>
-        </div>
-
         <div class="tl-tags">
+          <span class="tag">Financial Analysis</span>
+          <span class="tag">M&amp;A</span>
+          <span class="tag">Cost Accounting</span>
+          <span class="tag">Variance Analysis</span>
           <span class="tag">Python</span>
           <span class="tag">pandas</span>
           <span class="tag">NumPy</span>
-          <span class="tag">Matplotlib</span>
-          <span class="tag">Excel</span>
-          <span class="tag">Variance Analysis</span>
-          <span class="tag">Deal Documentation</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---------- China Merchants Securities ---------- -->
+    <article class="tl-item rv">
+      <div class="tl-when">
+        Jun. 2023 – Sep. 2023
+        <span class="tl-place">Shenzhen, Guangdong, China</span>
+      </div>
+      <div class="tl-body">
+        <h2 class="tl-role">Research Assistant Intern</h2>
+        <div class="tl-org">
+          <span class="en">China Merchants Securities Co., Ltd.</span>
+          <span>Research Institute · ESG Research</span>
+        </div>
+
+        <ul class="tl-list">
+          <li>Collected and cleaned ESG disclosure data for more than 50 A-share companies from 2022 ESG and CSR reports, Wind and CSMAR, and helped maintain the team&rsquo;s ESG indicator database by standardising company-level data from multiple sources.</li>
+          <li>Compared IFRS S1 and S2 with the TCFD framework and existing exchange ESG guidelines, summarising potential implications for A-share disclosure in internal research notes.</li>
+          <li>Tracked the relaunch of China&rsquo;s national CCER scheme, including the draft measures released in July 2023, and compiled carbon market policy updates and trading data for analysts&rsquo; weekly reports.</li>
+          <li>Assisted analysts in comparing ESG ratings from different data providers for covered companies.</li>
+          <li>Prepared charts, data tables and background research for internal ESG and green finance research reports.</li>
+        </ul>
+
+        <div class="tl-stats">
+          <div class="stat"><div class="stat-n">50+</div><div class="stat-k">A-share companies&rsquo; ESG data cleaned</div></div>
+          <div class="stat"><div class="stat-n">Weekly</div><div class="stat-k">carbon market updates</div></div>
+        </div>
+
+        <div class="tl-tags">
+          <span class="tag">ESG Research</span>
+          <span class="tag">Sustainability Reporting</span>
+          <span class="tag">IFRS S1 / S2</span>
+          <span class="tag">TCFD</span>
+          <span class="tag">Carbon Markets</span>
+          <span class="tag">CCER</span>
+          <span class="tag">ESG Ratings</span>
+          <span class="tag">Wind</span>
+          <span class="tag">CSMAR</span>
+          <span class="tag">Data Cleaning</span>
+          <span class="tag">Policy Research</span>
         </div>
       </div>
     </article>
@@ -789,7 +950,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
     <article class="tl-item rv">
       <div class="tl-when">
         Jun. 2022 – Sep. 2022
-        <span class="tl-place">Jinchang, Gansu, China</span>
+        <span class="tl-place">Lanzhou, Gansu, China</span>
       </div>
       <div class="tl-body">
         <h2 class="tl-role">Capital Budgeting Intern</h2>
@@ -800,7 +961,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
         <ul class="tl-list">
           <li>Compiled and reconciled <strong>equipment and asset ledgers</strong> for 110kV and 35kV substation facilities and 10kV distribution works, verifying fixed-asset and grid-equipment records, computing depreciation from original cost, asset class and useful life, and analysing overhaul, operations-and-maintenance and distribution-upgrade costs.</li>
           <li>Processed budget, contract, procurement, asset and expense line items across transmission, technical-upgrade and overhaul projects; ran variance analysis of budget, cumulative input and actual spend by material, equipment, maintenance and other categories, and automated the recurring merge–clean–depreciate–aggregate cycle in Python.</li>
-          <li>Tracked 15+ policy and industry sources on the unified national electricity market, transmission and distribution pricing, renewable absorption, green power trading and inter-provincial transmission, and combined them with installed-capacity, generation and export data for a region where <strong>renewables exceed 60% of installed capacity</strong>, producing internal research notes.</li>
+          <li>Tracked 15+ policy and industry sources on the unified national electricity market, transmission and distribution pricing, renewable absorption, green power trading and inter-provincial transmission, and combined them with installed-capacity, generation and export data for a region where <strong>renewables exceed 60% of installed capacity</strong>, producing internal research notes arguing that the binding constraint on renewable growth had shifted from generation capacity to grid absorption and system flexibility.</li>
         </ul>
 
         <div class="tl-stats">
@@ -810,27 +971,18 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
           <div class="stat"><div class="stat-n">3–4 h → 1–1.5 h</div><div class="stat-k">recurring reconciliation cycle</div></div>
         </div>
 
-        <div class="tl-quote">
-          <span class="q-key">The call I made</span>
-          <p>The binding constraint on renewable growth in the region had already moved from generation capacity to grid absorption and system flexibility — so decarbonisation-driven power investment had to fund transmission, storage and inter-regional trading capability, not just new wind and solar.</p>
-        </div>
-
-        <div class="tl-note">
-          <span class="n-key">What it taught me</span>
-          <p>Financial and data analysis cannot be detached from how a business actually operates: depreciation, project cost and capital expenditure all correspond to physical grid assets and engineering activity, while macro policy feeds back through interconnection, grid investment and absorption mechanisms. This was where I moved from organising data to asking what the data meant.</p>
-        </div>
-
         <div class="tl-tags">
+          <span class="tag">Capital Budgeting</span>
+          <span class="tag">Variance Analysis</span>
+          <span class="tag">Depreciation</span>
+          <span class="tag">Asset Ledgers</span>
           <span class="tag">Python</span>
           <span class="tag">Excel</span>
-          <span class="tag">Asset Ledgers</span>
-          <span class="tag">Depreciation</span>
-          <span class="tag">Variance Analysis</span>
           <span class="tag">Policy Research</span>
         </div>
       </div>
     </article>
-
+    
     <!-- ---------- GEPIC ---------- -->
     <article class="tl-item rv">
       <div class="tl-when">
@@ -845,15 +997,10 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 
         <ul class="tl-list">
           <li>Supported the preparation of a <strong>project proposal for a real-estate development</strong>, drafting portions of the investment estimate and financing plan, the financial evaluation, and the risk analysis; assisted in building the financial model from construction scale, cost and sales assumptions — total investment, funding requirement, revenue, cash flow, NPV, IRR and payback — and helped run sensitivity analysis on the key parameters.</li>
-          <li>Supported the group's acquisition of an equity stake in a <strong>European power utility</strong>, organising the target's operating, financial and shareholding materials and following the internal decision process — a first look at cross-border deal structure, valuation, approval procedures and post-investment return logic.</li>
-          <li>Supported an M&amp;A and restructuring transaction, compiling both parties' business, asset and financial information, historical operating data and ownership structure, and contributing to preliminary analysis of investment value, potential synergies and principal transaction risks.</li>
-          <li>Researched the clean-energy and solar PV sector — installed capacity, industrial policy, project capex, tariff mechanisms and competition — and assessed regional resource endowment, grid absorption and project returns under China's dual-carbon targets.</li>
+          <li>Supported the Group&rsquo;s acquisition of an equity stake in a <strong>European power utility</strong>, organising the target&rsquo;s operating, financial and shareholding materials and following the internal decision process — a first look at cross-border deal structure, valuation, approval procedures and post-investment return logic.</li>
+          <li>Supported an M&amp;A and restructuring transaction, compiling both parties&rsquo; business, asset and financial information, historical operating data and ownership structure, and contributing to preliminary analysis of investment value, potential synergies and principal transaction risks.</li>
+          <li>Researched the clean-energy and solar PV sector — installed capacity, industrial policy, project capex, tariff mechanisms and competition — and assessed regional resource endowment, grid absorption and project returns under China&rsquo;s dual-carbon targets.</li>
         </ul>
-
-        <div class="tl-note">
-          <span class="n-key">What it taught me</span>
-          <p>This was the first time I saw how an investment case is actually built and defended, and how differently a project investment and an equity acquisition have to be analysed. It also left me with a habit I still use: tracing how policy and industry variables travel through firm behaviour into cash flows, capital expenditure and returns — which is more or less where my later interest in ESG, investment efficiency and disclosure came from.</p>
-        </div>
 
         <div class="tl-tags">
           <span class="tag">Financial Modelling</span>
@@ -865,10 +1012,47 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
       </div>
     </article>
 
+    <!-- ---------- Bank of China ---------- -->
+    <article class="tl-item rv">
+      <div class="tl-when">
+        Jun. 2021 – Sep. 2021
+        <span class="tl-place">Beijing, China · Remote</span>
+      </div>
+      <div class="tl-body">
+        <h2 class="tl-role">Summer Intern</h2>
+        <div class="tl-org">
+          <span class="en">Bank of China</span>
+          <span>Head Office</span>
+        </div>
+
+        <ul class="tl-list">
+          <li>Collected and cleaned FY2016&ndash;FY2020 annual report data and 2021 interim results for the six large state-owned banks, and built Excel comparison tables on net interest margin, ROE, NPL ratio, capital adequacy and green loan balances to benchmark Bank of China against its peers.</li>
+          <li>Tracked 20+ policy releases and industry reports on green finance and carbon neutrality, including the PBOC Green Finance Evaluation Scheme for banks, the Green Bond Endorsed Projects Catalogue (2021) and the launch of the national carbon emissions trading market, and compiled a weekly digest of key developments for the team.</li>
+          <li>Drafted two research notes on how the new green finance evaluation and the national carbon market could affect large banks&rsquo; green lending, green bond business and exposure to high-emission sectors, combining peer data with policy analysis.</li>
+        </ul>
+
+        <div class="tl-stats">
+          <div class="stat"><div class="stat-n">6</div><div class="stat-k">large state-owned banks benchmarked</div></div>
+          <div class="stat"><div class="stat-n">20+</div><div class="stat-k">policy releases &amp; reports tracked</div></div>
+          <div class="stat"><div class="stat-n">2</div><div class="stat-k">research notes drafted</div></div>
+        </div>
+
+        <div class="tl-tags">
+          <span class="tag">Financial Statement Analysis</span>
+          <span class="tag">Peer Benchmarking</span>
+          <span class="tag">Banking</span>
+          <span class="tag">Green Finance</span>
+          <span class="tag">Carbon Markets</span>
+          <span class="tag">Policy Research</span>
+          <span class="tag">Excel</span>
+        </div>
+      </div>
+    </article>
+
     <!-- ---------- Student Organization Lead ---------- -->
     <article class="tl-item tl-item--parallel rv">
       <div class="tl-when">
-        Sep. 2021 – May. 2025
+        Sep. 2021 – May 2025
         <span class="tl-place">Zhuhai, Guangdong, China</span>
       </div>
       <div class="tl-body">
@@ -879,16 +1063,11 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
         <div class="tl-tagline">Concurrent with undergraduate study</div>
 
         <ul class="tl-list">
-          <li>Led a student network of approximately <strong>200 members</strong> across Accounting, E-commerce, and Innovation & Entrepreneurship, serving in the role for four consecutive years.</li>
+          <li>Led a student network of approximately <strong>200 members</strong> across Accounting, E-commerce, and Innovation &amp; Entrepreneurship, serving in the role for four consecutive years.</li>
           <li>Managed day-to-day operations, including meetings, internal communications, documentation, and coordination with faculty and university stakeholders.</li>
           <li>Maintained membership records and coordinated onboarding, internal reviews, member development, and recognition processes.</li>
           <li>Planned and delivered volunteer initiatives, community engagement programmes, and campus cultural activities across three student branches.</li>
         </ul>
-
-        <div class="tl-note">
-          <span class="n-key">What it taught me</span>
-          <p>Leading peers without formal authority taught me that effective coordination depends less on giving instructions than on earning trust, aligning expectations, and following through. When decisions affected members directly, I learned to value transparent processes and consistent standards as much as the outcome.</p>
-        </div>
 
         <div class="tl-tags">
           <span class="tag">~200 members</span>
@@ -897,7 +1076,6 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
         </div>
       </div>
     </article>
-
   </div>
 
   <p class="exp-foot rv">Public portfolio note. Internal or confidential information from employer work — counterparties, project names, deal terms and monetary values — is intentionally not published here. Organisations are named as they appear on my CV; the figures above describe the scale of my own work products and contain no confidential data.</p>
