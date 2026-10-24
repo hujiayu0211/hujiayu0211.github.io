@@ -1348,7 +1348,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   <div class="wrap">
     <div class="eyebrow rv"><span class="ln"></span>02 &middot; Live My Life</div>
     <h1 class="page-title rv">On Repeat<span class="dot">.</span></h1>
-    <p class="page-lead rv">What I have been listening to lately — three tracks per artist, three per language. Open a section and press play.</p>
+    <p class="page-lead rv">What I have been listening to lately, grouped by artist and language. Open a section and press play.</p>
     <a class="back-link rv" href="live-my-life.html">&larr; Back to Live My Life</a>
   </div>
 </header>
@@ -1357,7 +1357,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 <section class="or-page">
   <div class="or-meta rv">
     <span><b id="trackCount">0</b> Tracks</span>
-    <span><b>8</b> Sections</span>
+    <span><b id="sectionCount">0</b> Sections</span>
     <span>Played through Spotify</span>
   </div>
   <div class="acc-wrap rv" id="acc"></div>
@@ -1422,19 +1422,20 @@ const BLOCKS = [
     "block": "Artists",
     "groups": [
       { "id":"jay", "label":"Jay Chou", "tracks":[
-        { "i":"57w29bSwdIZ6gr6xXOqwc1", "t":"七里香",   "a":"Jay Chou" },
-        { "i":"1oLmDOpJtIMFdRFBXdnOvj", "t":"夜曲",     "a":"Jay Chou" },
-        { "i":"0GvxoZAzrqS7bFEHFHsfd4", "t":"髮如雪",   "a":"Jay Chou" }
+        { "i":"57w29bSwdIZ6gr6xXOqwc1", "t":"七里香",       "a":"Jay Chou" },
+        { "i":"1oLmDOpJtIMFdRFBXdnOvj", "t":"夜曲",         "a":"Jay Chou" },
+        { "i":"0GvxoZAzrqS7bFEHFHsfd4", "t":"髮如雪",       "a":"Jay Chou" },
+        { "i":"0HaaQYOITuzuBLHhMHpX0c", "t":"雙刀",         "a":"Jay Chou" },
+        { "i":"0ohJoxvXm7x5TiLYv9Vgwp", "t":"最偉大的作品", "a":"Jay Chou" },
+        { "i":"5tdmknz9j88wOSOQn5T5jx", "t":"千山万水",     "a":"Jay Chou" }
       ]},
       { "id":"vae", "label":"Vae", "tracks":[
-        { "i":"03kwTe4rsyPowO0wiDYGrA", "t":"想像之中",   "a":"許嵩" },
-        { "i":"1TNw0nkGMuydC979VlPWBL", "t":"千百度",     "a":"許嵩" },
-        { "i":"1Oelbd16RrKfnMz7cNBy8X", "t":"彈指一揮間", "a":"許嵩" }
-      ]},
-      { "id":"houxian", "label":"Houxian", "tracks":[
-        { "i":"4Xb8915GUB49O76P0onfMr", "t":"西厢",       "a":"後弦" },
-        { "i":"4RXSFfXRMPAzjm2B51ZzUU", "t":"昆明湖",     "a":"後弦" },
-        { "i":"6kKOhjPklBXJa49zCDhmhY", "t":"下完這場雨", "a":"後弦" }
+        { "i":"03kwTe4rsyPowO0wiDYGrA", "t":"想像之中",       "a":"許嵩" },
+        { "i":"1TNw0nkGMuydC979VlPWBL", "t":"千百度",         "a":"許嵩" },
+        { "i":"1Oelbd16RrKfnMz7cNBy8X", "t":"彈指一揮間",     "a":"許嵩" },
+        { "i":"65bRYkG90LpIzqLzg4firZ", "t":"素颜",           "a":"許嵩, 何曼婷" },
+        { "i":"371ixmyel2DZ0fPKNmIxfn", "t":"如果当时",       "a":"許嵩" },
+        { "i":"04C8kycy8z2kh5BR16fZag", "t":"天龍八部之宿敵", "a":"許嵩" }
       ]}
     ]
   },
@@ -1442,29 +1443,47 @@ const BLOCKS = [
     "block": "By Language",
     "groups": [
       { "id":"mandarin", "label":"Mandarin", "tracks":[
-        { "i":"5oL7vOxCz2eJKAX6G4Yluh", "t":"情歌", "a":"Fish Leong" },
-        { "i":"0YgvF6fNWydNGzCY3pzK4Y", "t":"江南", "a":"JJ Lin" },
-        { "i":"7k6tTpNIEXlaWYiYEgesSU", "t":"知了", "a":"陈默之" }
+        { "i":"5oL7vOxCz2eJKAX6G4Yluh", "t":"情歌",       "a":"Fish Leong" },
+        { "i":"4RXSFfXRMPAzjm2B51ZzUU", "t":"昆明湖",     "a":"後弦" },
+        { "i":"4VKVl3wR3qFpZtzWlScvx4", "t":"三國戀",     "a":"TANK" },
+        { "i":"0WPWV03zSzOk5oUAmfXVGW", "t":"下一個天亮", "a":"Claire Kuo" },
+        { "i":"1b5IRT3iraxjHOsKZx93sW", "t":"月牙灣",     "a":"F.I.R." },
+        { "i":"58Qy0mh4I3nbH0tjotDgUs", "t":"劍傷",       "a":"李易峰" },
+        { "i":"3QuKEcUFIJYi1DCoO6YkfL", "t":"夢的光點",   "a":"Cyndi Wang" },
+        { "i":"1sfmWlFCr9Dh8ZVlSdup0U", "t":"日不落",     "a":"JOLIN" },
+        { "i":"0keF7rx0yb2Z9WTxoPAgnI", "t":"叹云兮",     "a":"鞠婧祎" }
       ]},
       { "id":"cantonese", "label":"Cantonese", "tracks":[
         { "i":"2lMVTk3I232dE7jnkufOSt", "t":"老派約會之必要", "a":"MC 張天賦" },
-        { "i":"0oE2ojWoZcNmGABQi8l1xk", "t":"處處吻",         "a":"Miriam Yeung" },
-        { "i":"1tUs2B1GUjM4Wr8VtSIzS0", "t":"問愛",           "a":"Yamy 郭穎" }
+        { "i":"7JX2ClsnxN9GirkOezr01O", "t":"喜歡你",         "a":"G.E.M." },
+        { "i":"3emEczwfSWGtBUsEnEFENR", "t":"海闊天空",       "a":"Beyond" },
+        { "i":"6NKE3iRhqHXbTfnzjo5max", "t":"裙下之臣",       "a":"Eason Chan" },
+        { "i":"4hqbFGaHk4yFhvPuL9JAYe", "t":"Amani",          "a":"Beyond" },
+        { "i":"5rVMDtR9mJrL08OTmMb7nn", "t":"愛與痛的邊緣",   "a":"Alan Tam" }
       ]},
       { "id":"english", "label":"English", "tracks":[
-        { "i":"7MXVkk9YMctZqd1Srtv4MB", "t":"Starboy",  "a":"The Weeknd, Daft Punk" },
-        { "i":"373gDROnujxNTFa1FojYIl", "t":"Lost",     "a":"Linkin Park" },
-        { "i":"6YUUQapDEqBF1yP3iHlsut", "t":"Insomnia", "a":"Craig David" }
+        { "i":"7MXVkk9YMctZqd1Srtv4MB", "t":"Starboy",       "a":"The Weeknd, Daft Punk" },
+        { "i":"373gDROnujxNTFa1FojYIl", "t":"Lost",          "a":"Linkin Park" },
+        { "i":"6epn3r7S14KUqlReYr77hA", "t":"Baby",          "a":"Justin Bieber, Ludacris" },
+        { "i":"0SiywuOBRcynK0uKGWdCnn", "t":"Bad Romance",   "a":"Lady Gaga" },
+        { "i":"5TbzAWWc5eJaANpA9kfGCd", "t":"Love Me Again", "a":"John Newman" },
+        { "i":"2rtSjGAgCkHL5mKboZMVgD", "t":"Free Loop",     "a":"Daniel Powter" }
       ]},
       { "id":"korean", "label":"Korean", "tracks":[
-        { "i":"2dCYxIY1IrPXn30EawLI7W", "t":"ROLY-POLY", "a":"T-ARA" },
-        { "i":"5XWlyfo0kZ8LF7VSyfS4Ew", "t":"Drama",     "a":"aespa" },
-        { "i":"3coRPMnFg2dJcPu5RMloa9", "t":"Whiplash",  "a":"aespa" }
+        { "i":"2dCYxIY1IrPXn30EawLI7W", "t":"ROLY-POLY",    "a":"T-ARA" },
+        { "i":"5XWlyfo0kZ8LF7VSyfS4Ew", "t":"Drama",        "a":"aespa" },
+        { "i":"3coRPMnFg2dJcPu5RMloa9", "t":"Whiplash",     "a":"aespa" },
+        { "i":"5mt7uyhBxTYL5gxa8nLRQj", "t":"Lovey-Dovey",  "a":"T-ARA" },
+        { "i":"6vjt2smGK75oc9r2OGFfgp", "t":"LEMONADE",     "a":"aespa" },
+        { "i":"63gCdrDtZlt1PMIGrzYEqt", "t":"Love Options", "a":"BESTie" }
       ]},
       { "id":"japanese", "label":"Japanese", "tracks":[
-        { "i":"2XpV9sHBexcNrz0Gyf3l18", "t":"ブルーバード", "a":"いきものがかり" },
-        { "i":"2cwvwUyyjjFsv55EywX9Zo", "t":"光るなら",     "a":"Goose house" },
-        { "i":"7JyF9j6r37HP2MKnTWmNoi", "t":"only my railgun", "a":"fripSide" }
+        { "i":"2XpV9sHBexcNrz0Gyf3l18", "t":"ブルーバード",       "a":"いきものがかり" },
+        { "i":"2cwvwUyyjjFsv55EywX9Zo", "t":"光るなら",           "a":"Goose house" },
+        { "i":"7JyF9j6r37HP2MKnTWmNoi", "t":"only my railgun",    "a":"fripSide" },
+        { "i":"4vMFL0Yhg2vJiOsnWbV2MW", "t":"名探偵コナン メイン・テーマ", "a":"大野克夫" },
+        { "i":"12mczjabZU7ONu1cMqvgOX", "t":"ウルトラマンタロウ", "a":"武村太郎" },
+        { "i":"1I6uKSVVYyFq5qaSa6W7Pp", "t":"aLIEz",              "a":"SawanoHiroyuki[nZk], mizuki" }
       ]}
     ]
   }
@@ -1476,6 +1495,9 @@ document.getElementById('trackCount').textContent =
   BLOCKS.reduce(function(n,b){
     return n + b.groups.reduce(function(m,g){ return m + g.tracks.length; }, 0);
   }, 0);
+
+document.getElementById('sectionCount').textContent =
+  BLOCKS.reduce(function(n,b){ return n + b.groups.length; }, 0);
 
 /* 折叠时只允许一个分组展开，范围是整页而不是单个区块 */
 function collapseOthers(current){
