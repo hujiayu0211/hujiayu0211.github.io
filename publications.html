@@ -1207,30 +1207,31 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   color:var(--text-soft);
 }
 
-.year-group{margin-top:46px}
-.year-group + .year-group{margin-top:12px}
+.year-group{margin-top:40px}
+.year-group + .year-group{margin-top:32px}
 .year-label{
   display:flex;
-  align-items:baseline;
-  gap:18px;
+  align-items:center;
+  gap:12px;
   font-family:var(--mono);
-  font-size:1.05rem;
-  letter-spacing:.2em;
+  font-size:14px;
+  letter-spacing:.18em;
   color:var(--text-soft);
-  margin-bottom:8px;
+  margin-bottom:12px;
 }
 .year-label::after{
   content:"";
   flex:1;
-  height:1.5px;
+  height:1px;
   background:var(--line);
 }
 
+/* every entry sits between two rules */
 .pub-entry{
-  padding:30px 0;
-  border-bottom:1.5px solid rgba(28,30,24,.1);
+  padding:16px 0;
+  border-bottom:1px solid var(--line);
 }
-.pub-entry:last-child{border-bottom:none}
+.year-label + .pub-entry{border-top:1px solid var(--line)}
 
 .pub-entry-head{
   display:flex;
@@ -1241,9 +1242,9 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 .pub-entry-title{
   font-family:var(--serif);
   font-weight:500;
-  font-size:clamp(1.2rem,1.8vw,1.5rem);
-  line-height:1.25;
-  letter-spacing:-.02em;
+  font-size:1.25rem;
+  line-height:1.375;
+  letter-spacing:-.01em;
   color:var(--text);
   max-width:980px;
 }
@@ -1252,13 +1253,13 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 
 .pub-entry-links{
   display:flex;
-  gap:16px;
+  gap:14px;
   flex:none;
   font-family:var(--mono);
-  font-size:12.5px;
+  font-size:11px;
   letter-spacing:.08em;
   white-space:nowrap;
-  padding-top:6px;
+  padding-top:4px;
 }
 .pub-entry-links a{
   color:var(--leaf);
@@ -1268,63 +1269,70 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   transition:opacity .2s;
 }
 .pub-entry-links a:hover{opacity:.66}
-.pub-entry-links a .arr{font-size:11px}
+.pub-entry-links a .arr{font-size:10px}
 
 .pub-authors{
-  margin-top:12px;
+  margin-top:8px;
   font-family:var(--sans);
-  font-size:1rem;
-  line-height:1.5;
+  font-size:.875rem;
+  line-height:1.625;
   color:var(--text-soft);
 }
 .pub-authors .me{
   color:var(--text);
   font-weight:600;
-  border-bottom:1.5px solid rgba(47,93,67,.4);
+  border-bottom:1px solid rgba(47,93,67,.4);
 }
 .pub-venue{
-  margin-top:9px;
+  margin-top:8px;
   font-family:var(--mono);
-  font-size:12.5px;
-  letter-spacing:.1em;
+  font-size:11px;
+  letter-spacing:.06em;
   text-transform:uppercase;
   color:var(--text-faint);
 }
 
 .pub-tags{
-  margin-top:18px;
+  margin-top:12px;
   display:flex;
   flex-wrap:wrap;
-  gap:10px;
+  gap:8px;
 }
 .pub-tag{
   font-family:var(--mono);
-  font-size:11.5px;
+  font-size:10px;
   letter-spacing:.1em;
   text-transform:uppercase;
   color:var(--text-soft);
   border:1px solid var(--line);
-  border-radius:6px;
-  padding:6px 11px;
+  border-radius:4px;
+  padding:4px 8px;
 }
 .pub-tag.status{
   color:var(--leaf);
   border-color:rgba(47,93,67,.3);
   background:rgba(47,93,67,.05);
 }
+/* award: same ochre as Finance on the home page */
+.pub-tag.award{
+  color:var(--clay);
+  font-weight:600;
+  border-color:rgba(168,110,50,.45);
+  background:rgba(168,110,50,.10);
+}
 .pub-badge{
   display:inline-block;
-  margin-left:10px;
-  padding:3px 9px;
+  margin-left:8px;
+  padding:2px 7px;
   border:1px solid rgba(47,93,67,.45);
-  border-radius:6px;
+  border-radius:4px;
   background:rgba(47,93,67,.06);
   color:var(--text);
-  font-size:11px;
+  font-size:9.5px;
   letter-spacing:.12em;
   vertical-align:1px;
 }
-.pub-tags--topic{margin-top:10px}
+.pub-tags--topic{margin-top:8px}
 
 /* BibTeX modal */
 .bib-overlay{
@@ -1452,6 +1460,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
         <span class="pub-tag">LLM</span>
       </div>
   </article>
+  </div>
   
   <div class="year-group rv">
     <div class="year-label">2025</div>
@@ -1470,7 +1479,9 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
             <p class="pub-venue">BBA Final Year Project (Honours) &middot; Beijing Normal-Hong Kong Baptist University <span class="pub-badge">Research Paper</span></p>
 
       <div class="pub-tags">
-        <span class="pub-tag">Excellent Final Year Project Award</span>
+        <span class="pub-tag award">Excellent Final Year Project Award</span>
+        <span class="pub-tag">BBA Project I A-</span>
+        <span class="pub-tag">BBA Project II A-</span>
       </div>
       <div class="pub-tags pub-tags--topic">
         <span class="pub-tag">ESG Disclosure</span>
