@@ -1176,25 +1176,34 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 /* The "summon the dragon" banner */
 .dragon-banner{
   position:relative;
+  max-width:880px;
+  aspect-ratio:88/30;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
   text-align:center;
-  padding:60px 24px 64px;
-  border:1.5px dashed rgba(47,93,67,.32);
+  padding:34px 0 14px 44px;  /* nudges the text into the dragon's coil */
+  border:1px solid rgba(47,93,67,.22);
   border-radius:20px;
   background:
     radial-gradient(120% 120% at 50% 0%, rgba(47,93,67,.05), transparent 60%);
   overflow:hidden;
 }
-.dragon-banner .glyph{
-  font-size:clamp(2.4rem,6vw,3.6rem);
-  line-height:1;
-  margin-bottom:18px;
-  filter:saturate(.85);
+/* dragon art sits behind the text */
+.dragon-banner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:url(assets/img/projects/dragon-card.webp) center/cover no-repeat;
+  pointer-events:none;
 }
+.dragon-banner > *{position:relative}
 .dragon-line{
   font-family:var(--serif);
   font-style:italic;
   font-weight:500;
-  font-size:clamp(1.5rem,3.6vw,2.5rem);
+  font-size:clamp(1.3rem,2.6vw,1.65rem);
   letter-spacing:-.02em;
   line-height:1.2;
   color:var(--text);
@@ -1352,7 +1361,8 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 
 @media(max-width:640px){
   .page-hero{padding:calc(var(--nav-h,72px) + 60px) 0 0}
-  .dragon-banner{padding:46px 18px 48px}
+  .dragon-banner{aspect-ratio:auto;padding:46px 18px 48px}
+  .dragon-banner::before{opacity:.35}
 }
 
 </style>
@@ -1401,9 +1411,8 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 
   <!-- Dragon banner -->
   <div class="dragon-banner rv">
-    <div class="glyph">&#128009;</div>
     <p class="dragon-line">Build the projects, <span class="em">summon the dragon.</span></p>
-    <p class="dragon-sub">Projects are in progress &mdash; previews below</p>
+    <p class="dragon-sub">Active and completed work &mdash; newest first</p>
   </div>
 
   <!-- Status summary -->
