@@ -1183,11 +1183,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   flex-direction:column;
   justify-content:center;
   text-align:center;
-  padding:34px 0 14px 44px;  /* nudges the text into the dragon's coil */
-  border:1px solid rgba(47,93,67,.22);
-  border-radius:20px;
-  background:
-    radial-gradient(120% 120% at 50% 0%, rgba(47,93,67,.05), transparent 60%);
+  padding:3.3% 0 0 19%;  /* centres the text inside the frame, right of the dragon */
   overflow:hidden;
 }
 /* dragon art sits behind the text */
@@ -1195,7 +1191,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   content:"";
   position:absolute;
   inset:0;
-  background:url(assets/img/projects/dragon-card.webp) center/cover no-repeat;
+  background:url(assets/img/projects/dragon-card1.webp) center/cover no-repeat;
   pointer-events:none;
 }
 .dragon-banner > *{position:relative}
@@ -1203,7 +1199,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   font-family:var(--serif);
   font-style:italic;
   font-weight:500;
-  font-size:clamp(1.3rem,2.6vw,1.65rem);
+    font-size:clamp(1.3rem,2.8vw,1.9rem);
   letter-spacing:-.02em;
   line-height:1.2;
   color:var(--text);
@@ -1361,8 +1357,8 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 
 @media(max-width:640px){
   .page-hero{padding:calc(var(--nav-h,72px) + 60px) 0 0}
-  .dragon-banner{aspect-ratio:auto;padding:46px 18px 48px}
-  .dragon-banner::before{opacity:.35}
+  .dragon-banner{aspect-ratio:auto;padding:46px 18px 48px;border:1px solid rgba(47,93,67,.22);border-radius:20px}
+  .dragon-banner::before{display:none}
 }
 
 </style>
@@ -1417,7 +1413,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 
   <!-- Status summary -->
   <div class="proj-status rv">
-    <span class="ps st-active"><span class="st-dot"></span>2 Active</span>
+    <span class="ps st-active"><span class="st-dot"></span>3 Active</span>
     <span class="ps st-upcoming"><span class="st-dot"></span>0 Upcoming</span>
     <span class="ps st-done"><span class="st-dot"></span>3 Completed</span>
   </div>
@@ -1426,7 +1422,24 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   <div class="soon-head rv">
     <span class="section-no">2026</span>
     <span class="soon-rule"></span>
-    <span class="soon-total">4 Projects</span>
+    <span class="soon-total">5 Projects</span>
+  </div>
+
+  <div class="teaser rv">
+    <div class="teaser-top">
+      <span class="teaser-kicker">Evidence QA &middot; Verification</span>
+      <span class="card-badge st-active"><span class="st-dot"></span>Active</span>
+    </div>
+    <h2 class="teaser-title">Report Evidence Assistant</h2>
+    <p class="teaser-body">Answers questions about a single uploaded corporate report, checking every quote, figure, scope and year against the cited passages before calling an answer supported. Evaluated on a 45-question test set frozen before any answering code was written.</p>
+    <div class="teaser-tags">
+      <span class="teaser-tag">BM25 + MiniLM</span>
+      <span class="teaser-tag">Citation Checking</span>
+      <span class="teaser-tag">Abstention</span>
+      <span class="teaser-tag">Frozen Test Set</span>
+      <span class="teaser-tag">Cloudflare Pages</span>
+      <a class="teaser-tag teaser-tag--code" href="https://github.com/hujiayu0211/adaptive-esg-evidence" target="_blank" rel="noopener">Code &#8599;</a>
+    </div>
   </div>
 
   <div class="teaser rv">
