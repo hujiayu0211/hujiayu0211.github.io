@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>On Repeat · Jasper (Jiayu Hu)</title>
-<meta name="description" content="What I have been listening to lately, grouped by language and playable here.">
+<meta name="description" content="Songs I keep coming back to, grouped by mood and language, with links to Apple Music, Spotify and QQ Music.">
 
 <link rel="icon" type="image/png" href="assets/logo/UNSW-logo-transparent.png">
 <link rel="apple-touch-icon" href="assets/logo/UNSW-logo.png">
@@ -1246,21 +1246,33 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   .life-card{min-height:240px}
 }
 
-/* ============ ON REPEAT — ACCORDION ============ */
+/* ============ ON REPEAT — ACCORDION + SONG CARDS ============ */
 .back-link{display:inline-flex;align-items:center;gap:8px;margin-top:30px;
   font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
   color:var(--text-faint);transition:color .2s}
 .back-link:hover{color:var(--leaf)}
 .or-page{padding:46px 0 96px}
-.or-meta{display:flex;flex-wrap:wrap;gap:22px;margin:0 0 30px;
+.or-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 28px;margin:0 0 30px}
+.or-meta{display:flex;flex-wrap:wrap;gap:22px;
   font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
 .or-meta b{color:var(--leaf);font-weight:500}
+/* Apple Music region switch */
+.or-region{display:flex;align-items:center;gap:12px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+.seg{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;background:var(--panel)}
+.seg button{border:0;background:none;cursor:pointer;padding:5px 13px;border-radius:999px;
+  font-family:var(--sans);font-size:12.5px;font-weight:500;letter-spacing:0;text-transform:none;
+  color:var(--text-soft);transition:background .2s,color .2s}
+.seg button:hover{color:var(--leaf)}
+.seg button[aria-pressed="true"]{background:var(--leaf);color:#fff}
+.seg button:focus-visible{outline:2px solid var(--leaf);outline-offset:2px}
+
 .acc{border-top:1px solid var(--line)}
-.acc-block{margin-top:52px}
+.acc-block{margin-top:56px}
 .acc-block:first-child{margin-top:0}
 .acc-block-h{display:flex;align-items:baseline;gap:14px;padding-bottom:12px}
 .acc-block-h .n{font-family:var(--serif);font-size:1.06rem;font-weight:600;color:var(--leaf);line-height:1}
-.acc-block-h .l{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-soft)}
+.acc-block-h .l{font-family:var(--serif);font-size:1.18rem;font-weight:500;letter-spacing:-.005em;color:var(--text-soft);line-height:1}
 .acc-item{border-bottom:1px solid var(--line)}
 .acc-head{width:100%;display:flex;align-items:center;gap:16px;padding:22px 4px;
   background:none;border:0;cursor:pointer;text-align:left;
@@ -1279,41 +1291,64 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
 .acc-head[aria-expanded="true"] .acc-sign::before,
 .acc-head[aria-expanded="true"] .acc-sign::after{background:var(--leaf)}
 .acc-panel{overflow:hidden;height:0;transition:height .52s var(--ease-soft)}
-.acc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;padding:2px 2px 28px}
-/* min-height 让卡片在播放器创建之前就占住位置，面板高度才算得准 */
-/* 卡片本体就是骨架屏：深色底 + 封面方块 + 两条文字条，
-   播放器载入后直接盖在上面，因为形状底色已经一致，看不出跳变 */
-.or-tile{position:relative;min-height:152px;border-radius:12px;background:#121212;
-  box-shadow:var(--shadow);
+.acc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:16px;padding:2px 2px 30px}
+
+/* Song card: cover | title, artist, platform buttons */
+.song{display:grid;grid-template-columns:104px minmax(0,1fr);grid-template-areas:"cover body" "cover links";
+  grid-template-rows:auto 1fr;column-gap:20px;align-content:start;padding:16px;
+  background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);
   opacity:0;transform:translateY(14px);
   transition:opacity .5s var(--ease-soft),transform .5s var(--ease-soft),box-shadow .35s var(--ease-soft)}
-.or-tile.in{opacity:1;transform:none}
-.or-tile:hover{box-shadow:0 2px 5px rgba(40,42,34,.06),0 22px 50px -26px rgba(40,42,34,.38)}
-.or-tile::before{
-  content:"";position:absolute;inset:0;border-radius:12px;pointer-events:none;
-  background:
-    linear-gradient(rgba(255,255,255,.07),rgba(255,255,255,.07)) 16px 16px/120px 120px no-repeat,
-    linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)) 152px 44px/112px 14px no-repeat,
-    linear-gradient(rgba(255,255,255,.05),rgba(255,255,255,.05)) 152px 72px/76px 11px no-repeat;
-  animation:tileShimmer 1.7s ease-in-out infinite;
-}
-@keyframes tileShimmer{0%,100%{opacity:.5}50%{opacity:1}}
-/* iframe 是 ::before 之后的子元素，绘制顺序在上，载入后自然覆盖骨架 */
-.or-tile iframe{position:relative;width:100%;height:152px;border:0;display:block;border-radius:12px;
-  opacity:1;transition:opacity .32s var(--ease-soft)}
-.or-tile iframe.loading{opacity:0}
+.song.in{opacity:1;transform:none}
+.song:hover{box-shadow:0 2px 5px rgba(40,42,34,.06),0 22px 50px -26px rgba(40,42,34,.34)}
+.song-cover{grid-area:cover;width:104px;height:104px;border-radius:10px;object-fit:cover;display:block;
+  background:var(--panel-2);box-shadow:0 0 0 1px var(--line-soft)}
+.song-body{grid-area:body;align-self:start;min-width:0}
+.song-title{font-family:var(--serif);font-size:1.26rem;font-weight:500;line-height:1.2;color:var(--text);
+  letter-spacing:-.005em;overflow-wrap:anywhere}
+.song-artist{margin-top:3px;font-family:var(--sans);font-size:13.5px;color:var(--text-soft)}
+/* Apple Music spans the row, so its right edge lines up with QQ Music below */
+.song-links{grid-area:links;align-self:start;display:grid;grid-template-columns:auto auto;justify-content:start;gap:8px;margin-top:12px}
+.song-links .pref{grid-column:1 / -1}
+.plat.pref .pref-tag{margin-left:auto}
+.plat{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 12px;
+  border:1px solid var(--line);border-radius:10px;background:var(--panel);
+  font-family:var(--sans);font-size:13px;font-weight:500;color:var(--text);white-space:nowrap;
+  transition:border-color .2s,color .2s,background .2s}
+.plat img{width:18px;height:18px;border-radius:4px;flex:none}
+.plat:hover{border-color:var(--leaf-dim);color:var(--leaf);background:var(--panel-2)}
+.plat:focus-visible{outline:2px solid var(--leaf);outline-offset:2px}
+.plat.pref{border-color:rgba(168,110,50,.55)}
+.plat.pref:hover{border-color:var(--clay);color:var(--clay)}
+.pref-tag{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.02em;
+  color:#fff;background:var(--clay);border-radius:5px;padding:2px 6px;line-height:1.3}
+.lbl-short{display:none}
+
 .or-foot{margin-top:34px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;
   text-transform:uppercase;color:var(--text-faint)}
 @media(max-width:720px){
   .page-hero{padding:calc(var(--nav-h,72px) + 60px) 0 0}
   .acc-head{padding:19px 2px;gap:12px}
-  .acc-grid{grid-template-columns:1fr;gap:14px;padding-bottom:22px}
+  .acc-grid{grid-template-columns:1fr;gap:12px;padding-bottom:22px}
+}
+@media(max-width:520px){
+  .song{grid-template-columns:68px minmax(0,1fr);grid-template-areas:"cover body" "links links";column-gap:14px;padding:14px}
+  .song-cover{width:68px;height:68px;border-radius:8px}
+  .song-body{align-self:center}
+  .song-title{font-size:1.12rem}
+  .song-artist{font-size:13px}
+  .song-links{display:flex;flex-wrap:wrap;gap:6px}
+  .plat.pref .pref-tag{margin-left:0}
+  .plat{height:32px;padding:0 10px;gap:6px;font-size:12.5px}
+  .plat img{width:16px;height:16px}
+  .lbl-long{display:none}
+  .lbl-short{display:inline}
+  /* phone: the Apple Music logo plus the Preferred tag is enough, keeps all three on one row */
+  .plat.pref .lbl-short{display:none}
 }
 @media(prefers-reduced-motion:reduce){
   .acc-panel{transition:none}
-  .or-tile{opacity:1;transform:none;transition:none}
-  .or-tile::before{animation:none;opacity:.75}
-  .or-tile iframe{transition:none}
+  .song{opacity:1;transform:none;transition:none}
 }
 
 </style>
@@ -1348,20 +1383,28 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   <div class="wrap">
     <div class="eyebrow rv"><span class="ln"></span>02 &middot; Live My Life</div>
     <h1 class="page-title rv">On Repeat<span class="dot">.</span></h1>
-    <p class="page-lead rv">What I have been listening to lately, grouped by artist and language. Open a section and press play.</p>
+    <p class="page-lead rv">Songs I keep coming back to, from a Jay Chou universe to favourites in five languages. Open a section and pick where to listen.</p>
     <a class="back-link rv" href="live-my-life.html">&larr; Back to Live My Life</a>
   </div>
 </header>
 
 <div class="wrap">
 <section class="or-page">
-  <div class="or-meta rv">
-    <span><b id="trackCount">0</b> Tracks</span>
-    <span><b id="sectionCount">0</b> Sections</span>
-    <span>Played through Spotify</span>
+  <div class="or-bar rv">
+    <div class="or-meta">
+      <span><b id="trackCount">0</b> Tracks</span>
+      <span><b id="sectionCount">0</b> Sections</span>
+    </div>
+    <div class="or-region">
+      <span id="regionLabel">Apple Music region</span>
+      <div class="seg" role="group" aria-labelledby="regionLabel">
+        <button type="button" data-region="global" aria-pressed="true">Global</button>
+        <button type="button" data-region="cn" aria-pressed="false" lang="zh-Hans">中国大陆</button>
+      </div>
+    </div>
   </div>
   <div class="acc-wrap rv" id="acc"></div>
-  <p class="or-foot rv">Updated October 2026</p>
+  <p class="or-foot rv">Updated November 2026</p>
 </section>
 </div>
 
@@ -1372,7 +1415,6 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   </div>
 </footer>
 
-<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
 <script>
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
@@ -1399,107 +1441,207 @@ if(dropdown&&moreButton&&moreMenu){
 }
 
 /* ============ ON REPEAT ============ */
-/* Spotify IFrame API：脚本异步加载，回调必须先定义好 */
-var SPOT = null, SPOT_Q = [];
-window.onSpotifyIframeApiReady = function(API){
-  SPOT = API;
-  var q = SPOT_Q; SPOT_Q = [];
-  q.forEach(function(fn){ fn(API); });
-};
-function withSpotify(fn){ SPOT ? fn(SPOT) : SPOT_Q.push(fn); }
-
-/* 同一时间只允许一个播放器发声 */
-var CURRENT = null;
-function claim(ctrl){
-  if(CURRENT === ctrl) return;
-  if(CURRENT){ try{ CURRENT.pause(); }catch(e){} }
-  CURRENT = ctrl;
-}
-function release(ctrl){ if(CURRENT === ctrl) CURRENT = null; }
-
+/* Each track: t title, a artist, c cover file, am {appleId: "stores"}, sp Spotify id, qq QQ Music mid.
+   Apple IDs differ by storefront, so each ID lists the stores where it opens (checked Nov 2026). */
 const BLOCKS = [
   {
-    "block": "Artists",
+    "block": "The Jay Chou Universe",
     "groups": [
-      { "id":"jay", "label":"Jay Chou", "tracks":[
-        { "i":"57w29bSwdIZ6gr6xXOqwc1", "t":"七里香",       "a":"Jay Chou" },
-        { "i":"1oLmDOpJtIMFdRFBXdnOvj", "t":"夜曲",         "a":"Jay Chou" },
-        { "i":"0GvxoZAzrqS7bFEHFHsfd4", "t":"髮如雪",       "a":"Jay Chou" },
-        { "i":"0HaaQYOITuzuBLHhMHpX0c", "t":"雙刀",         "a":"Jay Chou" },
-        { "i":"0ohJoxvXm7x5TiLYv9Vgwp", "t":"最偉大的作品", "a":"Jay Chou" },
-        { "i":"5tdmknz9j88wOSOQn5T5jx", "t":"千山万水",     "a":"Jay Chou" }
+      { "id":"love", "label":"Love & Heartbreak", "tracks":[
+        {"t":"你听得到","a":"Jay Chou","c":"am-1721464893","am":{"1721465363":"au us gb ca hk sg jp kr","535824741":"cn tw"},"sp":"3ZsPujeG0eWb4o3VkrHKd5","qq":"002elTc93yuXu2"},
+        {"t":"半岛铁盒","a":"Jay Chou","c":"am-1721459350","am":{"1721459354":"au us gb ca hk sg jp kr","536162079":"cn tw"},"sp":"7LQSysyJNJAtAemXIQ6mDs","qq":"002OKIox28ad9a"},
+        {"t":"给我一首歌的时间","a":"Jay Chou","c":"am-1721460694","am":{"1721460700":"au us gb ca hk sg jp kr","1624000715":"cn tw"},"sp":"3PM4u9Z8d3IMVsBlFPID2J","qq":"004BhQke4adHcf"},
+        {"t":"一路向北","a":"Jay Chou","c":"am-1721453716","am":{"1721454134":"au us gb ca hk sg jp kr","536009753":"cn tw"},"sp":"31RIphTQ9y4zStkH5xRWgW","qq":"001xd0HI0X9GNq"},
+        {"t":"珊瑚海","a":"Jay Chou","c":"am-1721453716","am":{"1721454126":"au us gb ca hk sg jp kr","536009751":"cn tw"},"sp":"4JY5s40ymnG18f6wxQtzPw","qq":"001K0AjL2huSxx"},
+        {"t":"明明就","a":"Jay Chou","c":"am-1721467014","am":{"1721467034":"au us gb ca hk sg jp kr","587743637":"cn tw"},"sp":"04x6DpeFQ72efXsD0DmWPQ","qq":"000oW8J53xPhZA"}
       ]},
-      { "id":"vae", "label":"Vae", "tracks":[
-        { "i":"03kwTe4rsyPowO0wiDYGrA", "t":"想像之中",       "a":"許嵩" },
-        { "i":"1TNw0nkGMuydC979VlPWBL", "t":"千百度",         "a":"許嵩" },
-        { "i":"1Oelbd16RrKfnMz7cNBy8X", "t":"彈指一揮間",     "a":"許嵩" },
-        { "i":"65bRYkG90LpIzqLzg4firZ", "t":"素颜",           "a":"許嵩, 何曼婷" },
-        { "i":"371ixmyel2DZ0fPKNmIxfn", "t":"如果当时",       "a":"許嵩" },
-        { "i":"04C8kycy8z2kh5BR16fZag", "t":"天龍八部之宿敵", "a":"許嵩" }
+      { "id":"chinese-style", "label":"Chinese Style", "tracks":[
+        {"t":"发如雪","a":"Jay Chou","c":"am-1721453716","am":{"1721454114":"au us gb ca hk sg jp kr","536009644":"cn tw"},"sp":"0GvxoZAzrqS7bFEHFHsfd4","qq":"0027oMO61wWi55"},
+        {"t":"七里香","a":"Jay Chou","c":"am-1721450027","am":{"1721450037":"au us gb ca hk sg jp kr","536115195":"cn tw"},"sp":"57w29bSwdIZ6gr6xXOqwc1","qq":"004Z8Ihr0JIu5s"},
+        {"t":"青花瓷","a":"Jay Chou","c":"am-1721455530","am":{"1721455873":"au us gb ca hk sg jp kr","536030695":"cn tw"},"sp":"479lquEL4Mzh3tQLtnHVfL","qq":"002qU5aY3Qu24y"},
+        {"t":"东风破","a":"Jay Chou","c":"am-1721464893","am":{"1721465358":"au us gb ca hk sg jp kr","535824740":"cn tw"},"sp":"3WTd8qNJhJHAgRG6FhdSPZ","qq":"003uEbEr0jcW7c"},
+        {"t":"烟花易冷","a":"Jay Chou","c":"am-1721449917","am":{"1721449922":"au us gb ca hk sg jp kr","536248196":"cn tw"},"sp":"1eNjHuETQDK41bi7JQR2Ik","qq":"004emQMs09Z1lz"},
+        {"t":"千里之外","a":"Jay Chou & Fei Yu-Ching","c":"am-1721453996","am":{"1721454270":"au us gb ca hk sg jp kr","536285259":"cn tw"},"sp":"02K5L2D21TVIINipDIPEfA","qq":"003FRy0r0wyGHl"}
+      ]},
+      { "id":"rap", "label":"Rap & Rhythm", "tracks":[
+        {"t":"淘金小镇","a":"Jay Chou","c":"am-1887230874","am":{"1887230890":"au us gb ca hk sg jp kr","6771326813":"cn","1887247019":"tw"},"sp":"6TK8UMYTqZ4ZIqRVLa8A0a","qq":"004fFOIE1n0fhE"},
+        {"t":"最伟大的作品","a":"Jay Chou","c":"am-1721454339","am":{"1721454344":"au us gb ca hk sg jp kr","1633408721":"cn","1632190510":"tw"},"sp":"0ohJoxvXm7x5TiLYv9Vgwp","qq":"003w2xz20QlUZt"},
+        {"t":"龙拳","a":"Jay Chou","c":"am-1721459350","am":{"1721459509":"au us gb ca hk sg jp kr","536162082":"cn tw"},"sp":"3QFHGX1we5JMH3XeOF1HAS","qq":"004R20x748kyO1"},
+        {"t":"本草纲目","a":"Jay Chou","c":"am-1721453996","am":{"1721454278":"au us gb ca hk sg jp kr","536285260":"cn tw"},"sp":"0iRFWnXN3PYWjlEocT44Ox","qq":"001bo9Wy1NfHpb"},
+        {"t":"公公偏头痛","a":"Jay Chou","c":"am-1721467014","am":{"1721467025":"au us gb ca hk sg jp kr","587743636":"cn tw"},"sp":"40cVo9HG8qiZAYVgM3MS93","qq":"001KTt4d1BTJOz"},
+        {"t":"乱舞春秋","a":"Jay Chou","c":"am-1721450027","am":{"1721450051":"au us gb ca hk sg jp kr","536115200":"cn tw"},"sp":"2OfI4WV2gub5WLJMzCr1Es","qq":"0031tzbX3Lps0M"}
+      ]},
+      { "id":"cinematic", "label":"Cinematic Stories", "tracks":[
+        {"t":"夜曲","a":"Jay Chou","c":"am-1721453716","am":{"1721454108":"au us gb ca hk sg jp kr","536009642":"cn tw"},"sp":"1oLmDOpJtIMFdRFBXdnOvj","qq":"001zMQr71F1Qo8"},
+        {"t":"止战之殇","a":"Jay Chou","c":"am-1721450027","am":{"1721450209":"au us gb ca hk sg jp kr","536115203":"cn tw"},"sp":"6OQQjrfT6AqGD1HDEDBmJw","qq":"0042fRqf4fC8ZB"},
+        {"t":"半兽人","a":"Jay Chou","c":"am-1721459350","am":{"1721459353":"au us gb ca hk sg jp kr","536162077":"cn tw"},"sp":"6VYs7eZrXM0e0vg2e8HoDP","qq":"001FUQiy2ZCiVt"},
+        {"t":"夜的第七章","a":"Jay Chou","c":"am-1721453996","am":{"1721454007":"au us gb ca hk sg jp kr","536285257":"cn tw"},"sp":"705AesgTkD0JiW74iKb8qS","qq":"0010ibBn4bYFTk"},
+        {"t":"以父之名","a":"Jay Chou","c":"am-1721464893","am":{"1721464904":"au us gb ca hk sg jp kr","535824736":"cn tw"},"sp":"5JTTfdqXlksUgNSjRFRPMh","qq":"001n4C3p1yv0FU"},
+        {"t":"爱在西元前","a":"Jay Chou","c":"am-1721454234","am":{"1721454235":"au us gb ca hk sg jp kr","535739349":"cn tw"},"sp":"3xLHE4RyJsmazpqiAfaXma","qq":"002usg9o4GTAKf"}
+      ]},
+      { "id":"warm", "label":"Warm & Playful", "tracks":[
+        {"t":"园游会","a":"Jay Chou","c":"am-1721450027","am":{"1721450056":"au us gb ca hk sg jp kr","536115202":"cn tw"},"sp":"7JvlfUCY5Qn1NN3D4WGBZ3","qq":"003nEQHr3Ceet5"},
+        {"t":"阳光宅男","a":"Jay Chou","c":"am-1721455530","am":{"1721455998":"au us gb ca hk sg jp kr","536030696":"cn tw"},"sp":"1lRH0NdToJuws1PGRDbetd","qq":"001bnNGN127Kbq"},
+        {"t":"稻香","a":"Jay Chou","c":"am-1721460694","am":{"1721460924":"au us gb ca hk sg jp kr","1624001324":"cn tw"},"sp":"6Uq8BnOxvXJsQiJ2XqfO5P","qq":"003aAYrm3GE0Ac"},
+        {"t":"时光机","a":"Jay Chou","c":"am-1721460694","am":{"1721460921":"au us gb ca hk sg jp kr","1624001322":"cn tw"},"sp":"0HXMQm8Oz4g7Yv6jRSSYJR","qq":"000sRQrz0aEDFp"},
+        {"t":"乌克丽丽","a":"Jay Chou","c":"am-1721467014","am":{"1721467267":"au us gb ca hk sg jp kr","587743646":"cn tw"},"sp":"6t66HjmYW7ZyiBRbA5CVI3","qq":"001beoYX0K09xu"},
+        {"t":"公主病","a":"Jay Chou","c":"am-1721454665","am":{"1721455015":"au us gb ca hk sg jp kr","535754620":"cn tw"},"sp":"3uUFHN5Fsz8IM3Lq9nIbgA","qq":"003hWWWP4Rdj4A"}
       ]}
     ]
   },
   {
-    "block": "By Language",
+    "block": "Duolingo",
     "groups": [
       { "id":"mandarin", "label":"Mandarin", "tracks":[
-        { "i":"5oL7vOxCz2eJKAX6G4Yluh", "t":"情歌",       "a":"Fish Leong" },
-        { "i":"4RXSFfXRMPAzjm2B51ZzUU", "t":"昆明湖",     "a":"後弦" },
-        { "i":"4VKVl3wR3qFpZtzWlScvx4", "t":"三國戀",     "a":"TANK" },
-        { "i":"0WPWV03zSzOk5oUAmfXVGW", "t":"下一個天亮", "a":"Claire Kuo" },
-        { "i":"1b5IRT3iraxjHOsKZx93sW", "t":"月牙灣",     "a":"F.I.R." },
-        { "i":"58Qy0mh4I3nbH0tjotDgUs", "t":"劍傷",       "a":"李易峰" },
-        { "i":"3QuKEcUFIJYi1DCoO6YkfL", "t":"夢的光點",   "a":"Cyndi Wang" },
-        { "i":"1sfmWlFCr9Dh8ZVlSdup0U", "t":"日不落",     "a":"JOLIN" },
-        { "i":"0keF7rx0yb2Z9WTxoPAgnI", "t":"叹云兮",     "a":"鞠婧祎" }
+        {"t":"情歌","a":"Fish Leong","c":"am-1095630068","am":{"1095630246":"au us gb ca hk sg jp kr tw cn"},"sp":"5oL7vOxCz2eJKAX6G4Yluh","qq":"0010BrWk2SucQr"},
+        {"t":"千年泪","a":"Tank Lu","c":"am-476458351","am":{"476458359":"au us gb ca jp kr","594747796":"hk sg tw cn"},"sp":"1dFDUmnNVTCc6FuPHDdesI","qq":"000pSaox3e7R2P"},
+        {"t":"昆明湖","a":"后弦","c":"am-1817712285","am":{"1817712291":"au us gb ca hk sg jp kr tw cn"},"sp":"4RXSFfXRMPAzjm2B51ZzUU","qq":"003hzmAB1eJ6GS"},
+        {"t":"如果我变成回忆","a":"Tank Lu","c":"am-1549515154","am":{"1549515776":"au us gb ca jp kr","549440400":"hk sg tw cn"},"sp":"4ZihPLUkdHJZ9XVhxMeFTG","qq":"002aNiIq3axGPF"},
+        {"t":"下一个天亮","a":"Claire Kuo","c":"am-535391943","am":{"535391944":"au us gb ca hk sg jp kr tw cn"},"sp":"0WPWV03zSzOk5oUAmfXVGW","qq":"000hwIui3xVub9"},
+        {"t":"多远都要在一起","a":"G.E.M.","c":"am-1053567923","am":{"1053567928":"au us gb ca hk sg jp kr tw cn"},"sp":"55d0jw269HE9pbOt5ntCo8","qq":"003S1hgM2asCye"},
+        {"t":"红豆","a":"Faye Wong","c":"am-965771664","am":{"965771855":"au us gb ca hk sg jp kr tw cn"},"sp":"5l94Up12BJSjhH7Mhr2ji4","qq":"0011nEwm2XPayS"},
+        {"t":"去北极忘记你","a":"Gareth.T","c":"am-1752430770","am":{"1752430771":"au us gb ca hk sg jp kr tw cn"},"sp":"0qBH1UQxdvqYyZrFQUBFno","qq":"004IFQs13uWOqa"},
+        {"t":"不死之身","a":"JJ Lin","c":"am-1071513017","am":{"1071513025":"au us gb ca hk sg jp kr tw cn"},"sp":"1Jzu6oies6m9zCiZtmU658","qq":"001p1Z5Z3lrPlu"}
       ]},
       { "id":"cantonese", "label":"Cantonese", "tracks":[
-        { "i":"2lMVTk3I232dE7jnkufOSt", "t":"老派約會之必要", "a":"MC 張天賦" },
-        { "i":"7JX2ClsnxN9GirkOezr01O", "t":"喜歡你",         "a":"G.E.M." },
-        { "i":"3emEczwfSWGtBUsEnEFENR", "t":"海闊天空",       "a":"Beyond" },
-        { "i":"6NKE3iRhqHXbTfnzjo5max", "t":"裙下之臣",       "a":"Eason Chan" },
-        { "i":"4hqbFGaHk4yFhvPuL9JAYe", "t":"Amani",          "a":"Beyond" },
-        { "i":"5rVMDtR9mJrL08OTmMb7nn", "t":"愛與痛的邊緣",   "a":"Alan Tam" }
+        {"t":"老派约会之必要","a":"MC Cheung Tinfu","c":"am-1635915573","am":{"1665875244":"au us gb ca hk sg jp kr tw cn"},"sp":"2lMVTk3I232dE7jnkufOSt","qq":"0003ysON0L5Kky"},
+        {"t":"冬天一个游","a":"Gordon Flanders","c":"am-1601766073","am":{"1601766074":"au us gb ca hk sg jp kr tw cn"},"sp":"2G3kfdeCByZpG260nUo4Vb","qq":"004N1jgC0ZgZzK"},
+        {"t":"单车","a":"Eason Chan","c":"am-542593700","am":{"542593707":"au us gb ca hk sg jp kr tw cn"},"sp":"2AllsVsmrJkEwXPXwDBCQu","qq":"004CU50m2JjBjr"},
+        {"t":"一百个未老先衰的方法","a":"MC Cheung Tinfu","c":"am-1781053261","am":{"1825762180":"au us gb ca hk sg jp kr tw cn"},"sp":"33zXfdqtSYhvfdoRrEdiRH","qq":"0037WGs63hryxd"},
+        {"t":"偿还","a":"Faye Wong","c":"am-965771664","am":{"965771858":"au us gb ca hk sg jp kr tw cn"},"sp":"2kOF946ACR2MPDsuhTtsuA","qq":"0036uax94eh4kn"},
+        {"t":"千千阙歌","a":"Priscilla Chan","c":"am-1443008630","am":{"1443008646":"au us gb ca hk sg jp kr tw cn"},"sp":"1KtjYENZnEhbegmuA8si6g","qq":"000E8jPw26JFub"}
       ]},
       { "id":"english", "label":"English", "tracks":[
-        { "i":"7MXVkk9YMctZqd1Srtv4MB", "t":"Starboy",       "a":"The Weeknd, Daft Punk" },
-        { "i":"373gDROnujxNTFa1FojYIl", "t":"Lost",          "a":"Linkin Park" },
-        { "i":"6epn3r7S14KUqlReYr77hA", "t":"Baby",          "a":"Justin Bieber, Ludacris" },
-        { "i":"0SiywuOBRcynK0uKGWdCnn", "t":"Bad Romance",   "a":"Lady Gaga" },
-        { "i":"5TbzAWWc5eJaANpA9kfGCd", "t":"Love Me Again", "a":"John Newman" },
-        { "i":"2rtSjGAgCkHL5mKboZMVgD", "t":"Free Loop",     "a":"Daniel Powter" }
+        {"t":"Starboy (feat. Daft Punk)","a":"The Weeknd","c":"am-1440871397","am":{"1440871420":"au us gb ca hk sg jp kr tw cn"},"sp":"7MXVkk9YMctZqd1Srtv4MB","qq":"002h2xfY0mXxRi"},
+        {"t":"Choosin' Texas","a":"Ella Langley","c":"am-1844932149","am":{"1844932150":"au us gb ca hk sg jp kr tw cn"},"sp":"65DbTqJKhbwqYbZ1Okr0rc","qq":"003xnEZC3v167H"},
+        {"t":"Baby (feat. Ludacris)","a":"Justin Bieber","c":"am-1443008825","am":{"1443008970":"au gb hk sg jp kr tw cn","1472491703":"us ca"},"sp":"6epn3r7S14KUqlReYr77hA","qq":"0033qH7G0B1UER"},
+        {"t":"Billie Jean","a":"Michael Jackson","c":"am-269572838","am":{"269573364":"au us gb ca hk sg jp kr tw cn"},"sp":"7J1uxwnxfQLu4APicE5Rnj","qq":"002P5kP80d88Vp"},
+        {"t":"Housewife","a":"Tate McRae","c":"am-6822497770","am":{"6822497774":"au us gb ca hk sg jp kr tw cn"},"sp":"2sFepQNyl1WjpROruP8bJ0","qq":"003fTWY00IfWzG"},
+        {"t":"Shape of You","a":"Ed Sheeran","c":"am-1193700802","am":{"1193700767":"au us gb ca hk sg jp kr tw cn"},"sp":"7qiZfU4dY1lWllzX7mPBI3","qq":"0041gObR2QG98x"}
       ]},
       { "id":"korean", "label":"Korean", "tracks":[
-        { "i":"2dCYxIY1IrPXn30EawLI7W", "t":"ROLY-POLY",    "a":"T-ARA" },
-        { "i":"5XWlyfo0kZ8LF7VSyfS4Ew", "t":"Drama",        "a":"aespa" },
-        { "i":"3coRPMnFg2dJcPu5RMloa9", "t":"Whiplash",     "a":"aespa" },
-        { "i":"5mt7uyhBxTYL5gxa8nLRQj", "t":"Lovey-Dovey",  "a":"T-ARA" },
-        { "i":"6vjt2smGK75oc9r2OGFfgp", "t":"LEMONADE",     "a":"aespa" },
-        { "i":"63gCdrDtZlt1PMIGrzYEqt", "t":"Love Options", "a":"BESTie" }
+        {"t":"ROLY-POLY","a":"T-ara","c":"am-1804698377","am":{"1804698378":"au us gb ca hk sg jp kr tw cn"},"sp":"2dCYxIY1IrPXn30EawLI7W","qq":"003quScq2Zcr6r"},
+        {"t":"Love Options","a":"BESTie","c":"am-727452822","am":{"727452833":"au us gb ca hk sg jp kr tw cn"},"sp":"63gCdrDtZlt1PMIGrzYEqt","qq":"0008rnAh3oSbcW"},
+        {"t":"Drama","a":"aespa","c":"am-1715939930","am":{"1715939931":"au us gb ca hk sg jp kr tw cn"},"sp":"5XWlyfo0kZ8LF7VSyfS4Ew","qq":"003In5MQ2SIjJ6"},
+        {"t":"Whiplash","a":"aespa","c":"am-1772214980","am":{"1772214981":"au us gb ca","1772644601":"hk sg kr tw cn","1773377311":"jp"},"sp":"3coRPMnFg2dJcPu5RMloa9","qq":"0005Zb7r2jTzEe"},
+        {"t":"Lovey-Dovey","a":"T-ara","c":"am-1804694905","am":{"1804694906":"au us gb ca hk sg jp kr tw cn"},"sp":"5mt7uyhBxTYL5gxa8nLRQj","qq":"000Yqk1S2kIvfy"},
+        {"t":"LEMONADE","a":"aespa","c":"am-6771565456","am":{"6771565458":"au us gb ca sg","1893599773":"hk kr tw cn","1893868120":"jp"},"sp":"6vjt2smGK75oc9r2OGFfgp","qq":"000NVIwc0ezTOD"},
+        {"t":"Haru Haru","a":"BIGBANG","c":"am-1346470974","am":{"1346470976":"au us gb ca hk sg kr tw","1446868823":"jp","1591154202":"cn"},"sp":"0a0OPcFuT4Br6ijaCUA7ai","qq":"001S0qKq0Vrdw4"},
+        {"t":"DAY BY DAY","a":"T-ara","c":"am-1804698750","am":{"1804698751":"au us gb ca hk sg jp kr tw cn"},"sp":"2DkL5Jaz5l47TksGuZ0y33","qq":"0025vepP2OVLKr"},
+        {"t":"Growl","a":"EXO","c":"am-854908236","am":{"854908245":"au us gb ca hk sg jp kr tw cn"},"sp":"6xy9JYFKcpb9L62PRNnYW5","qq":"002iH7Y73h7fz5"}
       ]},
       { "id":"japanese", "label":"Japanese", "tracks":[
-        { "i":"2XpV9sHBexcNrz0Gyf3l18", "t":"ブルーバード",       "a":"いきものがかり" },
-        { "i":"2cwvwUyyjjFsv55EywX9Zo", "t":"光るなら",           "a":"Goose house" },
-        { "i":"7JyF9j6r37HP2MKnTWmNoi", "t":"only my railgun",    "a":"fripSide" },
-        { "i":"4vMFL0Yhg2vJiOsnWbV2MW", "t":"名探偵コナン メイン・テーマ", "a":"大野克夫" },
-        { "i":"12mczjabZU7ONu1cMqvgOX", "t":"ウルトラマンタロウ", "a":"武村太郎" },
-        { "i":"1I6uKSVVYyFq5qaSa6W7Pp", "t":"aLIEz",              "a":"SawanoHiroyuki[nZk], mizuki" }
+        {"t":"Blue Bird","a":"Ikimonogakari","c":"am-1536309389","am":{"1536309390":"au us gb ca hk sg jp kr tw cn"},"sp":"2XpV9sHBexcNrz0Gyf3l18","qq":"002hhAGz4gaVXs"},
+        {"t":"Hikarunara","a":"Goose house","c":"am-1537451762","am":{"1537451763":"au us gb ca hk sg jp kr tw cn"},"sp":"2cwvwUyyjjFsv55EywX9Zo","qq":"001OwYuF4EMRtk"},
+        {"t":"Masked Rider Kuuga!","a":"Masayuki Tanaka","c":"am-1818705111","am":{"1818705112":"au us gb ca hk sg jp kr tw cn"},"sp":"7Kvgi7InjhAiHCx45e8kr5","qq":"002mZW613Fk5Gu"},
+        {"t":"Detective Conan Main Theme (The Phantom Of Baker Street Version)","a":"Katsuo Ono","c":"am-1550871357","am":{"1550871648":"au us gb ca hk sg jp kr tw cn"},"sp":"4vMFL0Yhg2vJiOsnWbV2MW","qq":"000y6FPi4HLoHn"},
+        {"t":"Ultraman Taro","a":"Taro Takemura & Mizuumi boys and girls choir","c":"am-6784084918","am":{"6784084934":"au us gb ca hk sg jp tw","6818443113":"kr"},"sp":"12mczjabZU7ONu1cMqvgOX","qq":"000yNQg50UV4Zt"},
+        {"t":"Butter-Fly","a":"Koji Wada","c":"qq-0022OOFr0SyH3m","am":{"520531141":"jp"},"qq":"001sEbhd0t63wN"}
       ]}
     ]
   }
 ];
 
+const ICON = 'assets/img/music/icons/';
+const COVER = 'assets/img/music/covers/';
+const CHECKED = ['au','us','gb','ca','hk','sg','jp','kr','tw','cn'];
+
+/* Guess the Apple Music storefront from the time zone (a VPN does not change it) */
+function guessStore(){
+  let tz = '';
+  try{ tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; }catch(e){}
+  const map = {
+    'Asia/Shanghai':'cn','Asia/Chongqing':'cn','Asia/Chungking':'cn','Asia/Harbin':'cn',
+    'Asia/Urumqi':'cn','Asia/Kashgar':'cn','PRC':'cn',
+    'Asia/Hong_Kong':'hk','Asia/Taipei':'tw','Asia/Singapore':'sg',
+    'Asia/Tokyo':'jp','Asia/Seoul':'kr','Europe/London':'gb'
+  };
+  if(map[tz]) return map[tz];
+  if(tz.indexOf('Australia/') === 0) return 'au';
+  if(/^America\/(Toronto|Vancouver|Edmonton|Winnipeg|Halifax|St_Johns|Regina|Montreal|Moncton|Whitehorse)$/.test(tz)) return 'ca';
+  return 'us';
+}
+const GUESS = guessStore();
+
+/* Region switch: remembered per browser; defaults from the time zone */
+let region = GUESS === 'cn' ? 'cn' : 'global';
+try{
+  const saved = localStorage.getItem('or_region');
+  if(saved === 'cn' || saved === 'global') region = saved;
+}catch(e){}
+
+function storefront(){
+  if(region === 'cn') return 'cn';
+  return GUESS === 'cn' ? 'us' : GUESS;
+}
+
+function appleUrl(t){
+  const sf = storefront();
+  for(const id in t.am){
+    if(t.am[id].split(' ').indexOf(sf) !== -1) return 'https://music.apple.com/' + sf + '/song/' + id;
+  }
+  return null;
+}
+
+function esc(s){
+  return String(s).replace(/[&<>"]/g, function(ch){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]; });
+}
+
+function platButton(href, icon, long, short, title, pref){
+  return '<a class="plat' + (pref ? ' pref' : '') + '" href="' + href + '" target="_blank" rel="noopener"'
+    + ' aria-label="Open ' + esc(title) + ' in ' + long + '">'
+    + '<img src="' + ICON + icon + '" alt="" width="18" height="18">'
+    + '<span class="lbl-long">' + long + '</span><span class="lbl-short">' + short + '</span>'
+    + (pref ? '<span class="pref-tag">Preferred</span>' : '')
+    + '</a>';
+}
+
+function linksHtml(t){
+  let h = '';
+  const am = appleUrl(t);
+  if(am) h += platButton(am, 'apple-music.png', 'Apple Music', 'Apple', t.t, true);
+  if(t.sp) h += platButton('https://open.spotify.com/track/' + t.sp, 'spotify.png', 'Spotify', 'Spotify', t.t, false);
+  if(t.qq) h += platButton('https://y.qq.com/n/ryqq/songDetail/' + t.qq, 'qq-music.png', 'QQ Music', 'QQ', t.t, false);
+  return h;
+}
+
+const built = [];   /* [{el, track}] for cards already on the page */
+
+function songCard(t){
+  const el = document.createElement('article');
+  el.className = 'song';
+  el.innerHTML =
+      '<img class="song-cover" src="' + COVER + t.c + '.webp" alt="" width="104" height="104" loading="lazy" decoding="async">'
+    + '<div class="song-body"><div class="song-title">' + esc(t.t) + '</div>'
+    + '<div class="song-artist">' + esc(t.a) + '</div></div>'
+    + '<div class="song-links">' + linksHtml(t) + '</div>';
+  built.push({ el: el, track: t });
+  return el;
+}
+
+function refreshLinks(){
+  built.forEach(function(b){ b.el.querySelector('.song-links').innerHTML = linksHtml(b.track); });
+  document.querySelectorAll('.seg button').forEach(function(btn){
+    btn.setAttribute('aria-pressed', btn.dataset.region === region ? 'true' : 'false');
+  });
+}
+
+document.querySelectorAll('.seg button').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    region = btn.dataset.region;
+    try{ localStorage.setItem('or_region', region); }catch(e){}
+    refreshLinks();
+  });
+});
+refreshLinks();
+
 const accWrap = document.getElementById('acc');
-
 document.getElementById('trackCount').textContent =
-  BLOCKS.reduce(function(n,b){
-    return n + b.groups.reduce(function(m,g){ return m + g.tracks.length; }, 0);
-  }, 0);
-
+  BLOCKS.reduce(function(n,b){ return n + b.groups.reduce(function(m,g){ return m + g.tracks.length; }, 0); }, 0);
 document.getElementById('sectionCount').textContent =
   BLOCKS.reduce(function(n,b){ return n + b.groups.length; }, 0);
 
-/* 折叠时只允许一个分组展开，范围是整页而不是单个区块 */
+/* Only one section open at a time, across the whole page */
 function collapseOthers(current){
   accWrap.querySelectorAll('.acc-head[aria-expanded="true"]').forEach(function(b){
     if(b !== current) b.dispatchEvent(new CustomEvent('collapse'));
@@ -1510,79 +1652,33 @@ function buildGroup(g, mount, openByDefault){
   const item = document.createElement('section');
   item.className = 'acc-item';
   item.innerHTML =
-    '<h3 style="margin:0"><button class="acc-head" type="button" aria-expanded="false" aria-controls="panel-'+g.id+'">'
-    + '<span>'+g.label+'</span><span class="acc-count">'+g.tracks.length+'</span>'
+    '<h3 style="margin:0"><button class="acc-head" type="button" aria-expanded="false" aria-controls="panel-' + g.id + '">'
+    + '<span>' + esc(g.label) + '</span><span class="acc-count">' + g.tracks.length + '</span>'
     + '<span class="acc-sign" aria-hidden="true"></span></button></h3>'
-    + '<div class="acc-panel" id="panel-'+g.id+'" role="region"><div class="acc-grid"></div></div>';
+    + '<div class="acc-panel" id="panel-' + g.id + '" role="region"><div class="acc-grid"></div></div>';
   mount.appendChild(item);
 
   const btn = item.querySelector('.acc-head');
   const panel = item.querySelector('.acc-panel');
   const grid = item.querySelector('.acc-grid');
-  let built = false;
-  let ctrls = [];
+  let isBuilt = false;
 
   function build(){
-    if(built) return; built = true;
-    g.tracks.forEach(function(t){
-      const tile = document.createElement('div');
-      tile.className = 'or-tile';
-      const slot = document.createElement('div');
-      tile.appendChild(slot);
-      grid.appendChild(tile);
-      withSpotify(function(API){
-        if(!tile.isConnected) return;              /* 折叠后不再创建 */
-        API.createController(slot,
-          { uri:'spotify:track:'+t.i, width:'100%', height:152, theme:'dark' },
-          function(ctrl){
-            ctrls.push(ctrl);
-            /* 先藏住 iframe，等它真正载完再淡入，挡掉 Spotify 自己那一帧白底 */
-            const fr = tile.querySelector('iframe');
-            if(fr){
-              fr.classList.add('loading');
-              const show = function(){ fr.classList.remove('loading'); };
-              fr.addEventListener('load', show, { once:true });
-              setTimeout(show, 2500);          /* 兜底：load 若已触发过就不会再来 */
-            }
-            ctrl.addListener('playback_started', function(){ claim(ctrl); });
-            ctrl.addListener('playback_update', function(e){
-              const d = e && e.data;
-              if(!d) return;
-              if(d.isPaused === false) claim(ctrl);
-              else if(d.isPaused === true) release(ctrl);
-            });
-          });
-      });
-    });
+    if(isBuilt) return;
+    isBuilt = true;
+    g.tracks.forEach(function(t){ grid.appendChild(songCard(t)); });
   }
 
-  /* 折叠后拆掉播放器：清掉 Spotify 那张关不掉的升级卡，内存也封顶在一组 */
-  function teardown(){
-    ctrls.forEach(function(c){
-      release(c);
-      try{ c.destroy(); }catch(e){}
-    });
-    ctrls = [];
-    grid.innerHTML = '';
-    built = false;
-  }
-
-  /* 两次赋值之间必须强制重排，否则 auto->0 被合并，动画不启动 */
+  /* Force a reflow between the two height writes, or auto -> 0 is merged and nothing animates */
   function setOpen(on){
     if(on) build();
     btn.setAttribute('aria-expanded', on ? 'true' : 'false');
     panel.style.height = panel.offsetHeight + 'px';
     void panel.offsetHeight;
     panel.style.height = on ? (grid.offsetHeight + 'px') : '0px';
-    const tiles = grid.querySelectorAll('.or-tile');
-    if(on){ tiles.forEach(function(el,i){ setTimeout(function(){ el.classList.add('in'); }, 70*i); }); }
-    else {
-      tiles.forEach(function(el){ el.classList.remove('in'); });
-      /* 用定时器而非 transitionend：关闭动效的用户不会收到 transitionend */
-      setTimeout(function(){
-        if(btn.getAttribute('aria-expanded') !== 'true') teardown();
-      }, 620);
-    }
+    const cards = grid.querySelectorAll('.song');
+    if(on){ cards.forEach(function(el,i){ setTimeout(function(){ el.classList.add('in'); }, 45 * i); }); }
+    else { cards.forEach(function(el){ el.classList.remove('in'); }); }
   }
 
   panel.addEventListener('transitionend', function(e){
@@ -1604,13 +1700,11 @@ let groupIndex = 0;
 BLOCKS.forEach(function(blk, bi){
   const wrap = document.createElement('div');
   wrap.className = 'acc-block';
-  wrap.innerHTML =
-    '<h2 class="acc-block-h"><span class="n">0'+(bi+1)+'</span><span class="l">'+blk.block+'</span></h2>';
+  wrap.innerHTML = '<h2 class="acc-block-h"><span class="n">0' + (bi + 1) + '</span><span class="l">' + esc(blk.block) + '</span></h2>';
   const acc = document.createElement('div');
   acc.className = 'acc';
   wrap.appendChild(acc);
   accWrap.appendChild(wrap);
-
   blk.groups.forEach(function(g){
     buildGroup(g, acc, groupIndex === 0);
     groupIndex++;
