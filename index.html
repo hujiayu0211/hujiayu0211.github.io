@@ -9,9 +9,7 @@
 <link rel="icon" type="image/png" href="assets/logo/UNSW-logo-transparent.png">
 <link rel="apple-touch-icon" href="assets/logo/UNSW-logo.png">
   
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 
 <style>
 :root{
@@ -1142,13 +1140,13 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
         
         <div class="photo photo-float">
           <img
-            src="assets/photo/profile-photo.PNG"
+            src="assets/photo/profile-photo.webp"
             alt="Jasper Jiayu Hu"
             width="520"
             height="541"
             fetchpriority="high"
             decoding="async"
-            onerror="if(!this.dataset.fallback){this.dataset.fallback='png';this.src='assets/photo/profile-photo.png';}else if(this.dataset.fallback==='png'){this.dataset.fallback='jpg';this.src='assets/photo/profile-photo.jpg';}else if(this.dataset.fallback==='jpg'){this.dataset.fallback='webp';this.src='assets/photo/profile-photo.webp';}else{this.onerror=null;}"
+            onerror="this.onerror=null;this.src='assets/photo/profile-photo.PNG';"
           >
         </div>
 
@@ -2070,7 +2068,9 @@ document.addEventListener("DOMContentLoaded", function(){
 (function(){
   var wrap=document.getElementById('hwHomeDots');
   if(!wrap) return;
-  fetch('/api/visitors').then(function(r){return r.json();}).then(function(d){
+  // Wait for this visit to be recorded first, so the dots include it
+  (window.hwTrack||Promise.resolve()).then(function(){return fetch('/api/visitors');})
+  .then(function(r){return r.json();}).then(function(d){
     var pts=(d&&d.ok&&Array.isArray(d.points))?d.points:[];
     if(!pts.length) return;                 // no data -> keep static fallback dots
     while(wrap.firstChild) wrap.removeChild(wrap.firstChild);

@@ -9,9 +9,7 @@
 <link rel="icon" type="image/png" href="assets/logo/UNSW-logo-transparent.png">
 <link rel="apple-touch-icon" href="assets/logo/UNSW-logo.png">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
 
 <style>
 :root{
@@ -1403,6 +1401,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 56px}
   </div>
 </footer>
 
+<script src="/visit-tracker.js"></script>
 <script>
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
@@ -1544,20 +1543,14 @@ if(dropdown && moreButton && moreMenu){
     const d=Math.floor(h/24); return d+'d ago';
   }
 
-  // 1) Record this visit (once per browser session)
-  if(!sessionStorage.getItem('hw_tracked')){
-    fetch('/api/track',{method:'POST'})
-      .then(r=>r.json())
-      .then(d=>{
-        sessionStorage.setItem('hw_tracked','1');
-        if(d && d.ok && (d.city || d.country)){
-          const place=[d.city, d.country].filter(Boolean).join(', ');
-          greetingText.textContent='You appear to be visiting from '+place+'. Welcome.';
-          greetingEl.classList.remove('empty');
-        }
-      })
-      .catch(()=>{});
-  }
+  // 1) This visit is recorded by /visit-tracker.js (once per browser session)
+  const tracked=window.hwTrack||Promise.resolve('');
+  tracked.then(place=>{
+    if(place){
+      greetingText.textContent='You appear to be visiting from '+place+'. Welcome.';
+      greetingEl.classList.remove('empty');
+    }
+  });
 
   // 2) Build the globe + load visitor data
   function initGlobe(points){
@@ -1604,7 +1597,8 @@ if(dropdown && moreButton && moreMenu){
     loadingEl.classList.add('hidden');
   }
 
-  fetch('/api/visitors')
+  // Read only after this visit is recorded, so it shows up in the totals and on the globe
+  tracked.then(()=>fetch('/api/visitors'))
     .then(r=>r.json())
     .then(d=>{
       const points=(d && d.ok && Array.isArray(d.points)) ? d.points : [];
