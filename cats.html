@@ -1381,5 +1381,23 @@ if(dropdown&&moreButton&&moreMenu){
 </script>
 
 <script src="/visit-tracker.js"></script>
+<script>
+// MORE menu: on narrow screens it opens to the right of MORE; open it leftwards when it would run off-screen
+(function(){
+  const dropdown=document.querySelector('.dropdown');
+  const menu=document.getElementById('moreMenu');
+  if(!dropdown||!menu) return;
+  const narrow=matchMedia('(max-width:820px)');
+  function fit(){
+    menu.style.left=''; menu.style.right='';
+    if(!narrow.matches) return;
+    const room=document.documentElement.clientWidth-dropdown.getBoundingClientRect().left;
+    if(menu.offsetWidth+12>room){ menu.style.left='auto'; menu.style.right='-16px'; }
+  }
+  fit();
+  addEventListener('resize',fit);
+  addEventListener('load',fit);
+})();
+</script>
 </body>
 </html>
